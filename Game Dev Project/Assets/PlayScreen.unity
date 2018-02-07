@@ -801,10 +801,13 @@ MonoBehaviour:
   rightKey: 100
   leftKey: 97
   jumpKey: 32
-  jumpVelocity: 500
+  TeleporterPrefab: {fileID: 1423557245579642, guid: 6bc035751ed6e46bda9d63384b6e0534,
+    type: 2}
+  jumpVelocity: 150
   moveSpeed: 1400
   FallMultiplier: 2.5
   LowJumpMultiplier: 2
+  TeleporterSpeed: 18
   groundDetection: {fileID: 1041648103}
 --- !u!1 &1937233994
 GameObject:
