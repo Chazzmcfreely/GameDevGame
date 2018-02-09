@@ -2,6 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Controller2D))]
+public class Player : MonoBehaviour
+{
+    float moveSpeed = 6;
+    float gravity = -20;
+    Vector3 velocity;
+
+    Controller2D controller;
+
+    void Start()
+    {
+        controller = GetComponent<Controller2D>();
+    }
+
+    void Update() 
+    {
+        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+        velocity.x = input.x * moveSpeed;
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+    }
+}
+/*
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
 public class Player : MonoBehaviour
 {
 
@@ -29,7 +57,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-       // gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+        // gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
 
     }
 
@@ -38,13 +66,15 @@ public class Player : MonoBehaviour
     {
         moveDirection = Vector2.zero;
 
-        if (Input.GetKeyDown(rightKey)) {
+        if (Input.GetKeyDown(rightKey))
+        {
             Vector3 scale = transform.localScale;
             scale.x = -Mathf.Abs(scale.x);
             transform.localScale = scale;
         }
 
-        if (Input.GetKeyDown(leftKey)) {
+        if (Input.GetKeyDown(leftKey))
+        {
             Vector3 scale = transform.localScale;
             scale.x = Mathf.Abs(scale.x);
             transform.localScale = scale;
@@ -65,7 +95,7 @@ public class Player : MonoBehaviour
         }
 
         jump = false;
-        if (Input.GetKey(jumpKey) && groundDetection.onGround)
+        if (Input.GetKeyDown(jumpKey))//&& groundDetection.onGround)
         {
             Debug.Log("trying to jump");
             jump = true;
@@ -105,15 +135,17 @@ public class Player : MonoBehaviour
         Debug.Log("can jump: " + jump);
         Debug.Log("move force: " + (moveDirection * moveSpeed * Time.fixedDeltaTime));
         rb.AddForce(moveDirection * moveSpeed * Time.fixedDeltaTime);
-        if (jump) {
-            rb.AddForce(Vector2.up * jumpVelocity * Time.fixedDeltaTime, ForceMode2D.Impulse);   
+        if (jump)
+        {
+            rb.AddForce(Vector2.up * jumpVelocity * Time.fixedDeltaTime, ForceMode2D.Impulse);
         }
     }
 
-    void AddValueToScore(int value) {
+    void AddValueToScore(int value)
+    {
         gameManager.score += value;
         Debug.Log("Current Score: " + gameManager.score);
-        
+
     }
 
     //void OnCollisionEnter2D(Collision2D CollisionInfo)
@@ -128,3 +160,4 @@ public class Player : MonoBehaviour
 
     //}
 }
+ */
