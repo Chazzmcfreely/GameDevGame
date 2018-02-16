@@ -10,7 +10,8 @@ public class Player : MonoBehaviour
     public float timeToJumpApex = .4f;
     float accelerationTimeAirborne = .2f;
     float accelerationTimeGrounded = .1f;
-    float moveSpeed = 6;
+    public float moveSpeed = 8;
+    public GameObject TeleporterPrefab;
 
     public Vector2 wallJumpClimb;
     public Vector2 wallJumpHop;
@@ -19,30 +20,49 @@ public class Player : MonoBehaviour
     public float wallSlideSpeedMax = 3;
     public float wallStickTime = .1f;
     float timeToWallUnstick;
+    public float TeleporterSpeed;
 
     float gravity;
     float maxJumpVelocity;
     float minJumpVelocity;
     Vector3 velocity;
     float velocityXSmoothing;
+    public float currentSpeed;
+    public float dashSpeed = 40;
+    float dashTimer = 0;
+    Vector3 destination;
+    Vector3 dashStart;
+
 
     Controller2D controller;
+
+    private BoxCollider2D playerCollider;
 
     void Start()
     {
         controller = GetComponent<Controller2D>();
+        playerCollider = GetComponent<BoxCollider2D>();
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
         minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
         print("Gravity: " + gravity + "Jump Velocity: " + maxJumpVelocity);
+        currentSpeed = moveSpeed;
     }
 
     void Update() 
     {
+        if (dashTimer > 0) {
+            dashTimer -= Time.deltaTime;
+            if (dashTimer < 0) {
+                dashTimer = 0;
+            }
+        }
+        //currentSpeed = Mathf.Lerp(currentSpeed, moveSpeed, 0.2f);
+
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         int wallDirX = (controller.collisions.left) ? -1 : 1;
 
-        float targetVelocityX = input.x * moveSpeed;
+        float targetVelocityX = input.x * currentSpeed;
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
 
         bool wallSliding = false;
@@ -78,6 +98,26 @@ public class Player : MonoBehaviour
 
         }
 
+       /* if (Input.GetMouseButtonDown(0))
+        {
+            Vector3 MouseCords = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 TeleporterRotation = new Vector3(MouseCords.x, MouseCords.y, 0f);
+            Vector2 DirectionToMouse = MouseCords - transform.position;
+
+
+
+            DirectionToMouse.Normalize();
+            float angleToMouse = Mathf.Rad2Deg * Mathf.Atan2(DirectionToMouse.y, DirectionToMouse.x) - 90;
+
+
+            GameObject newTeleporter = Instantiate(TeleporterPrefab);
+            Physics2D.IgnoreCollision(newTeleporter.GetComponent<BoxCollider2D>(), playerCollider);
+
+            newTeleporter.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+            newTeleporter.transform.eulerAngles = new Vector3(0, 0, angleToMouse);
+
+            newTeleporter.GetComponent<Rigidbody2D>().velocity = DirectionToMouse * TeleporterSpeed; ;
+        } */
 
 
         if (Input.GetKeyDown(KeyCode.Space)) 
@@ -116,7 +156,17 @@ public class Player : MonoBehaviour
 
         }
 
+    
         velocity.y += gravity * Time.deltaTime;
+
+        CheckDash();
+
+        if (dashTimer > 0)
+        {
+            Vector3 lineToDestination = destination - transform.position;
+            velocity = lineToDestination;
+        }
+
         controller.Move(velocity * Time.deltaTime, input);
 
         if (controller.collisions.above || controller.collisions.below)
@@ -124,6 +174,24 @@ public class Player : MonoBehaviour
             velocity.y = 0;
         }
 
+    }
+
+    void CheckDash () {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector2 dirToMouse = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+            dirToMouse *= dashSpeed;
+            velocity.x += dirToMouse.x;
+            velocity.y += dirToMouse.y;
+            dashTimer = 0.25f;
+
+            dashStart = transform.position;
+            destination = transform.position + (Vector3)dirToMouse;
+
+            //Set the velocities to just equals
+            // make everymovement a coditional, if you dash you need a global timer to delay movement until the timer runs out
+            //
+        }
     }
 }
 /*
