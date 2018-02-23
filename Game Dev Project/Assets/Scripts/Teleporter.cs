@@ -16,7 +16,7 @@ public class Teleporter : MonoBehaviour {
 	void Update () {
 	if (onWall)
         {
-            rb.transform.position
+           // rb.transform.position
         }
 
 
@@ -24,6 +24,9 @@ public class Teleporter : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collisioninfo)
     {
-        rb.transform.position()
+        // rb.transform.position()
+        rb.isKinematic = true;
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0;
     }
 }

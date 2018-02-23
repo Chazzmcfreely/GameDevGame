@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
     Vector3 destination;
     Vector3 dashStart;
 
+    bool isTeleporter = false;
+    GameObject teleporter;
 
     Controller2D controller;
 
@@ -47,6 +49,7 @@ public class Player : MonoBehaviour
         minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
         print("Gravity: " + gravity + "Jump Velocity: " + maxJumpVelocity);
         currentSpeed = moveSpeed;
+        teleporter = null;
     }
 
     void Update() 
@@ -98,26 +101,44 @@ public class Player : MonoBehaviour
 
         }
 
-       /* if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            Vector3 MouseCords = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 TeleporterRotation = new Vector3(MouseCords.x, MouseCords.y, 0f);
-            Vector2 DirectionToMouse = MouseCords - transform.position;
+
+            if (teleporter == null)
+            {
+                Vector3 MouseCords = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector3 TeleporterRotation = new Vector3(MouseCords.x, MouseCords.y, 0f);
+                Vector2 DirectionToMouse = MouseCords - transform.position;
 
 
 
-            DirectionToMouse.Normalize();
-            float angleToMouse = Mathf.Rad2Deg * Mathf.Atan2(DirectionToMouse.y, DirectionToMouse.x) - 90;
+                DirectionToMouse.Normalize();
+                float angleToMouse = Mathf.Rad2Deg * Mathf.Atan2(DirectionToMouse.y, DirectionToMouse.x) - 90;
 
 
-            GameObject newTeleporter = Instantiate(TeleporterPrefab);
-            Physics2D.IgnoreCollision(newTeleporter.GetComponent<BoxCollider2D>(), playerCollider);
+                teleporter = Instantiate(TeleporterPrefab);
+                Physics2D.IgnoreCollision(teleporter.GetComponent<CircleCollider2D>(), playerCollider);
 
-            newTeleporter.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-            newTeleporter.transform.eulerAngles = new Vector3(0, 0, angleToMouse);
+                teleporter.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+                teleporter.transform.eulerAngles = new Vector3(0, 0, angleToMouse);
 
-            newTeleporter.GetComponent<Rigidbody2D>().velocity = DirectionToMouse * TeleporterSpeed; ;
-        } */
+                teleporter.GetComponent<Rigidbody2D>().velocity = DirectionToMouse * TeleporterSpeed; ;
+
+                isTeleporter = true;
+            }
+            else
+            {
+                transform.position = teleporter.transform.position;
+
+                // use it by teleporting
+
+
+                Destroy(teleporter);
+                teleporter = null;
+
+            }
+
+        } 
 
 
         if (Input.GetKeyDown(KeyCode.Space)) 
