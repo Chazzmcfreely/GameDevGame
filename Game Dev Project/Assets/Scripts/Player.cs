@@ -13,6 +13,14 @@ public class Player : MonoBehaviour
     public float moveSpeed = 8;
     public GameObject TeleporterPrefab;
 
+    public enum PlayerNum
+    {
+        Player1,
+        Player2
+    }
+
+    public PlayerNum playerNum;
+
     public Vector2 wallJumpClimb;
     public Vector2 wallJumpHop;
     public Vector2 wallJumpLeap;
@@ -33,23 +41,49 @@ public class Player : MonoBehaviour
     Vector3 destination;
     Vector3 dashStart;
 
+    public float lives = 3;
+
     bool isTeleporter = false;
     GameObject teleporter;
 
     Controller2D controller;
 
-    private BoxCollider2D playerCollider;
+    private GameObject[] players;
+    private List<BoxCollider2D> playerColliders = new List<BoxCollider2D>();
+
+    string horizontalMove;
+    string verticalMove;
+    string jump;
+
 
     void Start()
     {
         controller = GetComponent<Controller2D>();
-        playerCollider = GetComponent<BoxCollider2D>();
+        players = GameObject.FindGameObjectsWithTag("Player");
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
         minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
         print("Gravity: " + gravity + "Jump Velocity: " + maxJumpVelocity);
         currentSpeed = moveSpeed;
         teleporter = null;
+
+        if(playerNum == PlayerNum.Player1){
+            horizontalMove = "Horizontal";
+            verticalMove = "Vertical";
+            jump = "Jump";
+        }else if(playerNum == PlayerNum.Player2){
+            horizontalMove = "P2Horizontal";
+            verticalMove = "P2Vertical";
+            jump = "P2Jump"; //needs to be different
+
+
+        }
+
+        for (int i = 0; i < players.Length; i++)
+        {
+            playerColliders.Add(players[i].GetComponent<BoxCollider2D>());
+            //Debug.Log(players[i].name);
+        }
     }
 
     void Update() 
@@ -62,9 +96,11 @@ public class Player : MonoBehaviour
         }
         //currentSpeed = Mathf.Lerp(currentSpeed, moveSpeed, 0.2f);
 
-        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        Vector2 input = new Vector2(Input.GetAxisRaw(horizontalMove), Input.GetAxisRaw(verticalMove));
         int wallDirX = (controller.collisions.left) ? -1 : 1;
 
+
+        //increase drag force
         float targetVelocityX = input.x * currentSpeed;
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
 
@@ -117,7 +153,12 @@ public class Player : MonoBehaviour
 
 
                 teleporter = Instantiate(TeleporterPrefab);
-                Physics2D.IgnoreCollision(teleporter.GetComponent<CircleCollider2D>(), playerCollider);
+                //Physics2D.IgnoreCollision(teleporter.GetComponent<CircleCollider2D>(), playerCollider);
+
+                for (int i = 0; i < playerColliders.Count; i++)
+                {
+                    Physics2D.IgnoreCollision(teleporter.GetComponent<CircleCollider2D>(), playerColliders[i]);
+                }
 
                 teleporter.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
                 teleporter.transform.eulerAngles = new Vector3(0, 0, angleToMouse);
@@ -141,7 +182,7 @@ public class Player : MonoBehaviour
         } 
 
 
-        if (Input.GetKeyDown(KeyCode.Space)) 
+        if (Input.GetButtonDown(jump)) 
         {
             if (wallSliding)
             {
@@ -168,7 +209,7 @@ public class Player : MonoBehaviour
             }
 
         }
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetButtonUp(jump))
         {
             if (velocity.y > minJumpVelocity)
             {
@@ -185,7 +226,18 @@ public class Player : MonoBehaviour
         if (dashTimer > 0)
         {
             Vector3 lineToDestination = destination - transform.position;
-            velocity = lineToDestination;
+            lineToDestination.Normalize();
+            velocity = lineToDestination * dashSpeed;
+
+            // raycast check for damage
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, lineToDestination.normalized);
+            if (hit.collider != null) {
+                if (hit.collider.tag == "Player") {
+                    if (hit.distance < 2) {
+                        Debug.Log("CHIPS");
+                    }
+                }
+            }
         }
 
         controller.Move(velocity * Time.deltaTime, input);
