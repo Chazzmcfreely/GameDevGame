@@ -48,18 +48,20 @@ public class Player : MonoBehaviour
 
     Controller2D controller;
 
-    private GameObject[] players;
+    private GameObject[] players = new GameObject[2];
     private List<BoxCollider2D> playerColliders = new List<BoxCollider2D>();
 
     string horizontalMove;
     string verticalMove;
     string jump;
-
+    string self;
+    string enemy;
 
     void Start()
     {
         controller = GetComponent<Controller2D>();
-        players = GameObject.FindGameObjectsWithTag("Player");
+        players[0] = GameObject.FindGameObjectWithTag("Player1");
+        players[1] = GameObject.FindGameObjectWithTag("Player2");
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
         minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
@@ -71,10 +73,15 @@ public class Player : MonoBehaviour
             horizontalMove = "Horizontal";
             verticalMove = "Vertical";
             jump = "Jump";
+            self = "Player1";
+            enemy = "Player2";
+
         }else if(playerNum == PlayerNum.Player2){
             horizontalMove = "P2Horizontal";
             verticalMove = "P2Vertical";
             jump = "P2Jump"; //needs to be different
+            self = "Player2";
+            enemy = "Player1";
 
 
         }
@@ -232,9 +239,10 @@ public class Player : MonoBehaviour
             // raycast check for damage
             RaycastHit2D hit = Physics2D.Raycast(transform.position, lineToDestination.normalized);
             if (hit.collider != null) {
-                if (hit.collider.tag == "Player") {
+                if (hit.collider.tag == enemy) {
                     if (hit.distance < 2) {
                         Debug.Log("CHIPS");
+                        ScoreControl.liveCount -= 1;
                     }
                 }
             }

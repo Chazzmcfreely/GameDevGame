@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 76370199a09ab499b8046532df180d83
+timeCreated: 1519836820
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Feeding a Moment
+  fontNames:
+  - Feeding a Moment
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
