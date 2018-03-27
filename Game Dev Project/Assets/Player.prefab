@@ -86,7 +86,12 @@ MonoBehaviour:
   moveSpeed: 8.5
   TeleporterPrefab: {fileID: 1213988076247712, guid: 2c2ed154de23d4489b49b09e2c264d54,
     type: 2}
+  roundOver: 0
   playerNum: 0
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 0
+  roundEnd: {fileID: 0}
   wallJumpClimb: {x: 7.5, y: 16}
   wallJumpHop: {x: 8.5, y: 7}
   wallJumpLeap: {x: 8, y: 18}
@@ -95,6 +100,7 @@ MonoBehaviour:
   TeleporterSpeed: 40
   currentSpeed: 0
   dashSpeed: 40
+  lives: 3
 --- !u!114 &114734059238643342
 MonoBehaviour:
   m_ObjectHideFlags: 1

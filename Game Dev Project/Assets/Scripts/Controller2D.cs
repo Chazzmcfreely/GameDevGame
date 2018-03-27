@@ -16,6 +16,7 @@ public class Controller2D : MonoBehaviour
 
     Vector2 playerInput;
 
+    RoundEnd RoundEnd; 
     float horizontalRaySpacing;
     float verticalRaySpacing;
 

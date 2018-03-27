@@ -18,8 +18,13 @@ public class Player : MonoBehaviour
         Player1,
         Player2
     }
+    public bool roundOver = false;
 
     public PlayerNum playerNum;
+
+    public LayerMask enemyMask;
+
+    public RoundEnd roundEnd;
 
     public Vector2 wallJumpClimb;
     public Vector2 wallJumpHop;
@@ -95,6 +100,15 @@ public class Player : MonoBehaviour
 
     void Update() 
     {
+        roundOver = RoundEnd.roundOver;
+
+        Vector2 input = new Vector2(Input.GetAxisRaw(horizontalMove), Input.GetAxisRaw(verticalMove));
+        float targetVelocityX = input.x * currentSpeed;
+        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
+
+       // if (roundOver){
+         //   return; 
+        //}
         if (dashTimer > 0) {
             dashTimer -= Time.deltaTime;
             if (dashTimer < 0) {
@@ -103,13 +117,11 @@ public class Player : MonoBehaviour
         }
         //currentSpeed = Mathf.Lerp(currentSpeed, moveSpeed, 0.2f);
 
-        Vector2 input = new Vector2(Input.GetAxisRaw(horizontalMove), Input.GetAxisRaw(verticalMove));
         int wallDirX = (controller.collisions.left) ? -1 : 1;
 
 
         //increase drag force
-        float targetVelocityX = input.x * currentSpeed;
-        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
+
 
         bool wallSliding = false;
 
@@ -237,14 +249,20 @@ public class Player : MonoBehaviour
             velocity = lineToDestination * dashSpeed;
 
             // raycast check for damage
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, lineToDestination.normalized);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, lineToDestination.normalized, 2, enemyMask);
             if (hit.collider != null) {
-                if (hit.collider.tag == enemy) {
-                    if (hit.distance < 2) {
+                Debug.Log("hit: " + hit.collider.gameObject.name + ", tag: " + hit.collider.gameObject.tag + ", this player's enemy is: " + enemy);
+                //if (hit.collider.tag == enemy) {
+                    //if (hit.distance < 2) {
                         Debug.Log("CHIPS");
                         ScoreControl.liveCount -= 1;
-                    }
-                }
+                        RoundEnd.EndRound();
+                    //slow down time after hit
+                //communicate to a different script that a player won, then turn off input
+                // particle effects
+                //then reload the 
+                //}
+                //}
             }
         }
 
@@ -275,139 +293,3 @@ public class Player : MonoBehaviour
         }
     }
 }
-/*
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Player : MonoBehaviour
-{
-
-    public KeyCode rightKey;
-    public KeyCode leftKey;
-    public KeyCode jumpKey;
-    public GameObject TeleporterPrefab;
-
-    //bool hasJump = true;
-    public float jumpVelocity;
-    public float moveSpeed;
-    public float FallMultiplier = 2.5f;
-    public float LowJumpMultiplier = 2f;
-    public float TeleporterSpeed;
-    public GroundDetection groundDetection;
-
-    Vector2 moveDirection = Vector2.zero;
-    bool jump = false;
-    Rigidbody2D rb;
-
-    GameManager gameManager;
-
-
-    // Use this for initialization
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        // gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        moveDirection = Vector2.zero;
-
-        if (Input.GetKeyDown(rightKey))
-        {
-            Vector3 scale = transform.localScale;
-            scale.x = -Mathf.Abs(scale.x);
-            transform.localScale = scale;
-        }
-
-        if (Input.GetKeyDown(leftKey))
-        {
-            Vector3 scale = transform.localScale;
-            scale.x = Mathf.Abs(scale.x);
-            transform.localScale = scale;
-        }
-
-        if (Input.GetKey(rightKey))
-        {
-            moveDirection += Vector2.right;
-
-        }
-
-        if (Input.GetKey(leftKey))
-        {
-            moveDirection += Vector2.left;
-
-            //transform.localRotation = Quaternion.Euler(0, 0, 0);
-
-        }
-
-        jump = false;
-        if (Input.GetKeyDown(jumpKey))//&& groundDetection.onGround)
-        {
-            Debug.Log("trying to jump");
-            jump = true;
-        }
-        if (Input.GetMouseButtonDown(0))
-        {
-            Vector3 MouseCords = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 TeleporterRotation = new Vector3(MouseCords.x, MouseCords.y, 0f);
-            Vector2 DirectionToMouse = MouseCords - transform.position;
-
-
-
-            DirectionToMouse.Normalize();
-            float angleToMouse = Mathf.Rad2Deg * Mathf.Atan2(DirectionToMouse.y, DirectionToMouse.x) - 90;
-
-
-            GameObject newTeleporter = Instantiate(TeleporterPrefab);
-            newTeleporter.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-            newTeleporter.transform.eulerAngles = new Vector3(0, 0, angleToMouse);
-
-            newTeleporter.GetComponent<Rigidbody2D>().velocity = DirectionToMouse * TeleporterSpeed; ;
-        }
-
-
-
-
-
-
-
-    }
-
-    void FixedUpdate()
-    {
-        //Vector2 position = (Vector2)transform.position + (moveDirection * speed * Time.fixedDeltaTime);
-        //rb.MovePosition(position);
-        Debug.Log("move direction: " + moveDirection);
-        Debug.Log("can jump: " + jump);
-        Debug.Log("move force: " + (moveDirection * moveSpeed * Time.fixedDeltaTime));
-        rb.AddForce(moveDirection * moveSpeed * Time.fixedDeltaTime);
-        if (jump)
-        {
-            rb.AddForce(Vector2.up * jumpVelocity * Time.fixedDeltaTime, ForceMode2D.Impulse);
-        }
-    }
-
-    void AddValueToScore(int value)
-    {
-        gameManager.score += value;
-        Debug.Log("Current Score: " + gameManager.score);
-
-    }
-
-    //void OnCollisionEnter2D(Collision2D CollisionInfo)
-    //{
-    //    if (CollisionInfo.gameObject.tag == "Floor")
-    //    {
-    //        //Physics2D.OverlapArea();
-    //        hasJump = true;
-    //        print("contact");
-    //    }
-    //    else { hasJump = false; }
-
-    //}
-}
- */
