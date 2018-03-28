@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     public LayerMask enemyMask;
 
     public RoundEnd roundEnd;
+    public Animator anim;
 
     public Vector2 wallJumpClimb;
     public Vector2 wallJumpHop;
@@ -61,6 +62,7 @@ public class Player : MonoBehaviour
     string jump;
     string self;
     string enemy;
+    string color;
 
     void Start()
     {
@@ -80,6 +82,7 @@ public class Player : MonoBehaviour
             jump = "Jump";
             self = "Player1";
             enemy = "Player2";
+            color = "Red_";
 
         }else if(playerNum == PlayerNum.Player2){
             horizontalMove = "P2Horizontal";
@@ -87,6 +90,7 @@ public class Player : MonoBehaviour
             jump = "P2Jump"; //needs to be different
             self = "Player2";
             enemy = "Player1";
+            color = "Blue_";
 
 
         }
@@ -105,7 +109,8 @@ public class Player : MonoBehaviour
         Vector2 input = new Vector2(Input.GetAxisRaw(horizontalMove), Input.GetAxisRaw(verticalMove));
         float targetVelocityX = input.x * currentSpeed;
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
-
+        Debug.Log(velocity.x);
+        anim.SetFloat("Speed", Mathf.Abs(velocity.x));
        // if (roundOver){
          //   return; 
         //}
@@ -124,10 +129,19 @@ public class Player : MonoBehaviour
 
 
         bool wallSliding = false;
+        anim.SetBool("WallSliding", wallSliding);
+
+        if(controller.collisions.below) 
+        {
+            anim.SetBool("Ground", true); 
+        }
+
 
         if((controller.collisions.left || controller.collisions.right) && !controller.collisions.below)
         {
             wallSliding = true;
+   
+
 
             if (velocity.y < -wallSlideSpeedMax)
             {

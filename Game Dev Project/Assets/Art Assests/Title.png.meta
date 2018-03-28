@@ -1,11 +1,10 @@
 fileFormatVersion: 2
-guid: 3dca430e768ce4e08b0b296109dbf4fd
-timeCreated: 1522202883
+guid: 70f21b7698ad34da8bc739588ea75f7c
+timeCreated: 1522256092
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Red_Idle2
-    21300002: Blue_Idle2
+    21300000: Title
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -44,7 +43,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
@@ -80,29 +79,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Red_Idle2
+      name: Title
       rect:
         serializedVersion: 2
-        x: 8
-        y: 94
-        width: 18
-        height: 18
+        x: 58
+        y: 78
+        width: 99
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Blue_Idle2
-      rect:
-        serializedVersion: 2
-        x: 27
-        y: 94
-        width: 18
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
