@@ -111,6 +111,7 @@ public class Player : MonoBehaviour
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
         Debug.Log(velocity.x);
         anim.SetFloat("Speed", Mathf.Abs(velocity.x));
+        HandleSpriteDirection();
        // if (roundOver){
          //   return; 
         //}
@@ -129,18 +130,27 @@ public class Player : MonoBehaviour
 
 
         bool wallSliding = false;
-        anim.SetBool("WallSliding", wallSliding);
+       
 
-        if(controller.collisions.below) 
-        {
-            anim.SetBool("Ground", true); 
+        //if(controller.collisions.below) 
+        //{
+        //    anim.SetBool("Ground", true); 
+        //}
+        //else {
+        //    anim.SetBool("Ground", false);
+        //}
+
+        if (anim.GetBool("Ground") != controller.collisions.below) {
+            anim.SetBool("Ground", (controller.collisions.below));
+            //anim.SetTrigger("Jump");
         }
 
 
         if((controller.collisions.left || controller.collisions.right) && !controller.collisions.below)
         {
+
             wallSliding = true;
-   
+               
 
 
             if (velocity.y < -wallSlideSpeedMax)
@@ -168,6 +178,13 @@ public class Player : MonoBehaviour
             }
 
 
+        }
+        else {
+            wallSliding = false;
+        }
+
+        if (anim.GetBool("WallSliding") != wallSliding) {
+            anim.SetBool("WallSliding", wallSliding);   
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
@@ -306,4 +323,28 @@ public class Player : MonoBehaviour
             //
         }
     }
+
+
+
+
+    void HandleSpriteDirection()
+    {
+        // this code will flip the sprite direction by assigning the x component of the transform scale to be either positive or negative
+        if (velocity.x > 0)
+        {
+            // moving right
+            Vector3 scale = transform.localScale;
+            scale.x = Mathf.Abs(scale.x);
+            transform.localScale = scale;
+        }
+        else if (velocity.x < 0)
+        {
+            // moving left
+            Vector3 scale = transform.localScale;
+            scale.x = -Mathf.Abs(scale.x);
+            transform.localScale = scale;
+        }
+    }
+
+
 }

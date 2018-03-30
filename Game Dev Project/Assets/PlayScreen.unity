@@ -707,7 +707,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.07765877, y: 0.21909589}
+  m_Offset: {x: -0.07765877, y: 0.22085424}
   m_SpriteTilingProperty:
     border: {x: 0.02, y: 0.02, z: 0.02, w: 0.02}
     pivot: {x: 0.5, y: 0.5}
@@ -718,7 +718,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.4991987, y: 0.5618082}
+  m_Size: {x: 2.4991987, y: 0.5582915}
   m_EdgeRadius: 0
 --- !u!4 &657745051
 Transform:
@@ -912,6 +912,11 @@ Prefab:
       propertyPath: anim
       value: 
       objectReference: {fileID: 1970204772}
+    - target: {fileID: 212690196589047066, guid: 56eec0932fa97411f988bef98468ced5,
+        type: 2}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56eec0932fa97411f988bef98468ced5, type: 2}
   m_IsPrefabParent: 0
@@ -1281,7 +1286,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1676746467}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
