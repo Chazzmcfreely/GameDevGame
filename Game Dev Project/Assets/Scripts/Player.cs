@@ -47,6 +47,15 @@ public class Player : MonoBehaviour
     Vector3 destination;
     Vector3 dashStart;
 
+    public AudioSource source;
+    public AudioClip Jump;
+    public AudioClip runOne; 
+    public AudioClip runTwo;
+
+
+
+
+
     public float lives = 3;
 
     bool isTeleporter = false;
@@ -63,9 +72,14 @@ public class Player : MonoBehaviour
     string self;
     string enemy;
     string color;
+    string rightHorizontal;
+    string rightVertical;
+    string dash;
+    string teleport;
 
     void Start()
     {
+        source = GetComponent<AudioSource>();
         controller = GetComponent<Controller2D>();
         players[0] = GameObject.FindGameObjectWithTag("Player1");
         players[1] = GameObject.FindGameObjectWithTag("Player2");
@@ -83,6 +97,11 @@ public class Player : MonoBehaviour
             self = "Player1";
             enemy = "Player2";
             color = "Red_";
+            rightHorizontal = "RightHorizontal";
+            rightVertical = "RightVertical";
+            dash = "Dash";
+            teleport = "Teleport";
+
 
         }else if(playerNum == PlayerNum.Player2){
             horizontalMove = "P2Horizontal";
@@ -91,6 +110,10 @@ public class Player : MonoBehaviour
             self = "Player2";
             enemy = "Player1";
             color = "Blue_";
+            rightHorizontal = "P2RightHorizontal";
+            rightVertical = "P2RightVertical";
+            dash = "P2Dash";
+            teleport = "P2Teleport";
 
 
         }
@@ -132,6 +155,8 @@ public class Player : MonoBehaviour
         bool wallSliding = false;
        
 
+        float angle = Mathf.Atan2(Input.GetAxis(rightHorizontal), Input.GetAxis(rightVertical)) * Mathf.Rad2Deg;
+        Debug.Log(angle);
         //if(controller.collisions.below) 
         //{
         //    anim.SetBool("Ground", true); 
@@ -187,7 +212,7 @@ public class Player : MonoBehaviour
             anim.SetBool("WallSliding", wallSliding);   
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetButtonDown(teleport))
         {
 
             if (teleporter == null)
@@ -234,6 +259,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown(jump)) 
         {
+            source.PlayOneShot(Jump, 0.5f);
             if (wallSliding)
             {
                 if (wallDirX == input.x)
@@ -307,7 +333,7 @@ public class Player : MonoBehaviour
     }
 
     void CheckDash () {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetButtonDown(dash))
         {
             Vector2 dirToMouse = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
             dirToMouse *= dashSpeed;
@@ -322,8 +348,29 @@ public class Player : MonoBehaviour
             // make everymovement a coditional, if you dash you need a global timer to delay movement until the timer runs out
             //
         }
+
+
+        //Game pad Dash/////////////////////////////////////////////////////////////////////////
+        if (Input.GetAxis(dash) > 0.1f)
+        {
+            //Vector2 dirToMouse = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+            Vector2 dashDir = new Vector2(-1 * (Input.GetAxis(rightHorizontal)), Input.GetAxis(rightVertical)).normalized;
+            dashDir *= dashSpeed;
+            velocity.x += Input.GetAxis(rightHorizontal);
+            velocity.y += Input.GetAxis(rightVertical);
+            dashTimer = 0.25f;
+
+            dashStart = transform.position;
+            destination = transform.position + (Vector3)dashDir;
+
+            //Set the velocities to just equals
+            // make everymovement a coditional, if you dash you need a global timer to delay movement until the timer runs out
+            //
+        }
+        //Game pad Dash/////////////////////////////////////////////////////////////////////////
     }
 
+  
 
 
 
@@ -344,6 +391,7 @@ public class Player : MonoBehaviour
             scale.x = -Mathf.Abs(scale.x);
             transform.localScale = scale;
         }
+
     }
 
 
