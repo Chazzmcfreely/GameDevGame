@@ -53,8 +53,9 @@ public class Player : MonoBehaviour
     public AudioClip runTwo;
 
 
-
-
+    int dashCount = 3;
+    float[] lastDashTimes;
+    float dashCoolDownDuration = 15f;
 
     public float lives = 3;
 
@@ -89,6 +90,8 @@ public class Player : MonoBehaviour
         print("Gravity: " + gravity + "Jump Velocity: " + maxJumpVelocity);
         currentSpeed = moveSpeed;
         teleporter = null;
+
+        lastDashTimes = new float[dashCount];
 
         if(playerNum == PlayerNum.Player1){
             horizontalMove = "Horizontal";
@@ -132,7 +135,7 @@ public class Player : MonoBehaviour
         Vector2 input = new Vector2(Input.GetAxisRaw(horizontalMove), Input.GetAxisRaw(verticalMove));
         float targetVelocityX = input.x * currentSpeed;
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
-        Debug.Log(velocity.x);
+        //Debug.Log(velocity.x);
         anim.SetFloat("Speed", Mathf.Abs(velocity.x));
         HandleSpriteDirection();
        // if (roundOver){
@@ -154,9 +157,12 @@ public class Player : MonoBehaviour
 
         bool wallSliding = false;
        
-
+        //////////////////////////////////////
         float angle = Mathf.Atan2(Input.GetAxis(rightHorizontal), Input.GetAxis(rightVertical)) * Mathf.Rad2Deg;
-        Debug.Log(angle);
+        //Debug.Log(angle + "right horizontal: " + Input.GetAxis(rightHorizontal));
+        ///////////////////////////////////////
+
+
         //if(controller.collisions.below) 
         //{
         //    anim.SetBool("Ground", true); 
@@ -214,12 +220,14 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown(teleport))
         {
+            //make it only able to teleport when it has stoppped moving
 
             if (teleporter == null)
             {
                 Vector3 MouseCords = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 Vector3 TeleporterRotation = new Vector3(MouseCords.x, MouseCords.y, 0f);
                 Vector2 DirectionToMouse = MouseCords - transform.position;
+                Vector2 dashDir = new Vector2(-1 * (Input.GetAxis(rightHorizontal)), Input.GetAxis(rightVertical)).normalized;
 
 
 
@@ -236,9 +244,9 @@ public class Player : MonoBehaviour
                 }
 
                 teleporter.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-                teleporter.transform.eulerAngles = new Vector3(0, 0, angleToMouse);
+                teleporter.transform.eulerAngles = new Vector3(0, 0, angle);
 
-                teleporter.GetComponent<Rigidbody2D>().velocity = DirectionToMouse * TeleporterSpeed; ;
+                teleporter.GetComponent<Rigidbody2D>().velocity = dashDir * TeleporterSpeed; ;
 
                 isTeleporter = true;
             }
@@ -333,41 +341,63 @@ public class Player : MonoBehaviour
     }
 
     void CheckDash () {
-        if (Input.GetButtonDown(dash))
-        {
-            Vector2 dirToMouse = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
-            dirToMouse *= dashSpeed;
-            velocity.x += dirToMouse.x;
-            velocity.y += dirToMouse.y;
-            dashTimer = 0.25f;
 
-            dashStart = transform.position;
-            destination = transform.position + (Vector3)dirToMouse;
-
-            //Set the velocities to just equals
-            // make everymovement a coditional, if you dash you need a global timer to delay movement until the timer runs out
-            //
+        if (dashCount < 3) {
+            Debug.Log("dash cool down check. dash count: " + dashCount);
+            Debug.Log("dash time: " + (Time.time - lastDashTimes[dashCount]));
+            if (Time.time - lastDashTimes[dashCount] > dashCoolDownDuration)
+            {
+                Debug.Log("increasing dashCount");
+                dashCount++;
+            }    
         }
 
+        Debug.Log("dash count: " + dashCount);
 
-        //Game pad Dash/////////////////////////////////////////////////////////////////////////
-        if (Input.GetAxis(dash) > 0.1f)
-        {
-            //Vector2 dirToMouse = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
-            Vector2 dashDir = new Vector2(-1 * (Input.GetAxis(rightHorizontal)), Input.GetAxis(rightVertical)).normalized;
-            dashDir *= dashSpeed;
-            velocity.x += Input.GetAxis(rightHorizontal);
-            velocity.y += Input.GetAxis(rightVertical);
-            dashTimer = 0.25f;
+        if (dashCount > 0) {
+            if (Input.GetButtonDown(dash))
+            {
+                Vector2 dirToMouse = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+                dirToMouse *= dashSpeed;
+                velocity.x += dirToMouse.x;
+                velocity.y += dirToMouse.y;
+                dashTimer = 0.25f;
 
-            dashStart = transform.position;
-            destination = transform.position + (Vector3)dashDir;
+                dashStart = transform.position;
+                destination = transform.position + (Vector3)dirToMouse;
 
-            //Set the velocities to just equals
-            // make everymovement a coditional, if you dash you need a global timer to delay movement until the timer runs out
-            //
+                //Set the velocities to just equals
+                // make everymovement a coditional, if you dash you need a global timer to delay movement until the timer runs out
+                //
+                lastDashTimes[dashCount - 1] = Time.time;
+                dashCount--;
+            }
+
+
+            //Game pad Dash/////////////////////////////////////////////////////////////////////////
+            if (Input.GetButtonDown(dash))
+            {
+                Debug.Log("trying to dash");
+                //Vector2 dirToMouse = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+                Vector2 dashDir = new Vector2(-1 * (Input.GetAxis(rightHorizontal)), Input.GetAxis(rightVertical)).normalized;
+                dashDir *= dashSpeed;
+                velocity.x += Input.GetAxis(rightHorizontal);
+                velocity.y += Input.GetAxis(rightVertical);
+                dashTimer = 0.25f;
+
+                dashStart = transform.position;
+                destination = transform.position + (Vector3)dashDir;
+
+                //Set the velocities to just equals
+                // make everymovement a coditional, if you dash you need a global timer to delay movement until the timer runs out
+                //
+                lastDashTimes[dashCount - 1] = Time.time;
+                dashCount--;
+            }
+            //Game pad Dash/////////////////////////////////////////////////////////////////////////
+
         }
-        //Game pad Dash/////////////////////////////////////////////////////////////////////////
+
     }
 
   
