@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     public float moveSpeed = 8;
     public GameObject TeleporterPrefab;
 
+    public Transform arrowPivot;
+
     public enum PlayerNum
     {
         Player1,
@@ -52,7 +54,6 @@ public class Player : MonoBehaviour
     public AudioClip runOne; 
     public AudioClip runTwo;
 
-
     int dashCount = 3;
     float[] lastDashTimes;
     float dashCoolDownDuration = 15f;
@@ -78,6 +79,9 @@ public class Player : MonoBehaviour
     string dash;
     string teleport;
 
+
+
+
     void Start()
     {
         source = GetComponent<AudioSource>();
@@ -99,7 +103,7 @@ public class Player : MonoBehaviour
             jump = "Jump";
             self = "Player1";
             enemy = "Player2";
-            color = "Red_";
+            color = "Red";
             rightHorizontal = "RightHorizontal";
             rightVertical = "RightVertical";
             dash = "Dash";
@@ -112,7 +116,7 @@ public class Player : MonoBehaviour
             jump = "P2Jump"; //needs to be different
             self = "Player2";
             enemy = "Player1";
-            color = "Blue_";
+            color = "Blue";
             rightHorizontal = "P2RightHorizontal";
             rightVertical = "P2RightVertical";
             dash = "P2Dash";
@@ -130,8 +134,20 @@ public class Player : MonoBehaviour
 
     void Update() 
     {
-        roundOver = RoundEnd.roundOver;
+        if(playerNum == PlayerNum.Player1){
+            if(RoundEnd.Player2Win){
+                return;
+            }
+        }else if(playerNum == PlayerNum.Player2){
+            if (RoundEnd.Player1Win)
+            {
+                return;
+            }
+        }
 
+        roundOver = RoundEnd.roundOver;
+        arrowPivot.position = transform.position;
+        arrowPivot.gameObject.SetActive(false);
         Vector2 input = new Vector2(Input.GetAxisRaw(horizontalMove), Input.GetAxisRaw(verticalMove));
         float targetVelocityX = input.x * currentSpeed;
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
@@ -159,6 +175,14 @@ public class Player : MonoBehaviour
        
         //////////////////////////////////////
         float angle = Mathf.Atan2(Input.GetAxis(rightHorizontal), Input.GetAxis(rightVertical)) * Mathf.Rad2Deg;
+        if(Input.GetAxis(rightHorizontal) != 0 || Input.GetAxis(rightVertical) != 0){
+            arrowPivot.gameObject.SetActive(true);
+        }
+        arrowPivot.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+
+
+
+
         //Debug.Log(angle + "right horizontal: " + Input.GetAxis(rightHorizontal));
         ///////////////////////////////////////
 
@@ -175,6 +199,8 @@ public class Player : MonoBehaviour
             anim.SetBool("Ground", (controller.collisions.below));
             //anim.SetTrigger("Jump");
         }
+
+
 
 
         if((controller.collisions.left || controller.collisions.right) && !controller.collisions.below)
@@ -267,29 +293,36 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown(jump)) 
         {
-            source.PlayOneShot(Jump, 0.5f);
             if (wallSliding)
             {
                 if (wallDirX == input.x)
                 {
                     velocity.x = -wallDirX * wallJumpClimb.x;
                     velocity.y = wallJumpClimb.y;
+                    source.PlayOneShot(Jump, 0.5f);
+
                 }
                 else if (input.x == 0)
                 {
                     velocity.x = -wallDirX * wallJumpHop.x;
                     velocity.y = wallJumpHop.y;
+                    source.PlayOneShot(Jump, 0.5f);
+
                 }
                 else 
                 {
                     velocity.x = -wallDirX * wallJumpLeap.x;
                     velocity.y = wallJumpLeap.y;
+                    source.PlayOneShot(Jump, 0.5f);
+
                 }
             }
 
             if(controller.collisions.below) 
             {
                 velocity.y = maxJumpVelocity;
+                source.PlayOneShot(Jump, 0.5f);
+
             }
 
         }
@@ -315,13 +348,16 @@ public class Player : MonoBehaviour
 
             // raycast check for damage
             RaycastHit2D hit = Physics2D.Raycast(transform.position, lineToDestination.normalized, 2, enemyMask);
+            Debug.DrawRay(transform.position, lineToDestination.normalized, Color.red);
+          
+
             if (hit.collider != null) {
                 Debug.Log("hit: " + hit.collider.gameObject.name + ", tag: " + hit.collider.gameObject.tag + ", this player's enemy is: " + enemy);
                 //if (hit.collider.tag == enemy) {
                     //if (hit.distance < 2) {
                         Debug.Log("CHIPS");
-                        ScoreControl.liveCount -= 1;
-                        RoundEnd.EndRound();
+                ScoreControl.liveCount -= 1;
+                        RoundEnd.EndRound(color);
                     //slow down time after hit
                 //communicate to a different script that a player won, then turn off input
                 // particle effects
@@ -423,6 +459,7 @@ public class Player : MonoBehaviour
         }
 
     }
+
 
 
 }
