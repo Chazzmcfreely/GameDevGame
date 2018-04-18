@@ -56,6 +56,13 @@ public class RoundEnd : MonoBehaviour
             winStrobe.color = Color.white;
         }
 
+        if (ScoreManager.redScore == 5){
+            SceneManager.LoadScene(2);
+        }
+        else (ScoreManager.blueScore == 5){
+            SceneManager.LoadScene(3);
+        }
+
     }
 
 
