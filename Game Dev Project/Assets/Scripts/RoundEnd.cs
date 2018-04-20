@@ -59,7 +59,7 @@ public class RoundEnd : MonoBehaviour
         if (ScoreManager.redScore == 5){
             SceneManager.LoadScene(2);
         }
-        else (ScoreManager.blueScore == 5){
+        else if (ScoreManager.blueScore == 5){
             SceneManager.LoadScene(3);
         }
 

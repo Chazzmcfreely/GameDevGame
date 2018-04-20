@@ -459,7 +459,7 @@ RectTransform:
   m_GameObject: {fileID: 301457010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalScale: {x: 0.038973577, y: 0.038973577, z: 0.038973577}
   m_Children:
   - {fileID: 775194635}
   - {fileID: 1138149181}
@@ -822,7 +822,7 @@ Prefab:
     - target: {fileID: 114371344682410032, guid: 56eec0932fa97411f988bef98468ced5,
         type: 2}
       propertyPath: enemyMask.m_Bits
-      value: 2048
+      value: 3072
       objectReference: {fileID: 0}
     - target: {fileID: 212690196589047066, guid: 56eec0932fa97411f988bef98468ced5,
         type: 2}
@@ -1109,7 +1109,7 @@ Prefab:
     - target: {fileID: 114371344682410032, guid: 56eec0932fa97411f988bef98468ced5,
         type: 2}
       propertyPath: enemyMask.m_Bits
-      value: 4096
+      value: 5120
       objectReference: {fileID: 0}
     - target: {fileID: 212690196589047066, guid: 56eec0932fa97411f988bef98468ced5,
         type: 2}
@@ -1997,7 +1997,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.15
+  orthographic size: 4.79375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

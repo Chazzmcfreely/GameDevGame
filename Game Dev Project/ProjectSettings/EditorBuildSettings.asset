@@ -12,5 +12,8 @@ EditorBuildSettings:
     path: Assets/PlayScreen.unity
     guid: a5476e8ab3fb7467aade194029add5cc
   - enabled: 1
-    path: Assets/Win Screen.unity
+    path: Assets/Red Win Screen.unity
     guid: b10f3983a5b0242deba00adf335310c5
+  - enabled: 1
+    path: Assets/Blue Win Screen.unity
+    guid: 13621cf7d273642d1a3ef7eac7a06c3d

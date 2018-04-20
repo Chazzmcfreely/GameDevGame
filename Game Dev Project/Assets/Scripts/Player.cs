@@ -54,9 +54,7 @@ public class Player : MonoBehaviour
     public AudioClip runOne; 
     public AudioClip runTwo;
 
-    int dashCount = 3;
-    float[] lastDashTimes;
-    float dashCoolDownDuration = 15f;
+
 
     public float lives = 3;
 
@@ -79,7 +77,13 @@ public class Player : MonoBehaviour
     string dash;
     string teleport;
 
+    float[] dashTimers = new float[3] {
+        0, 0, 0
+    };
 
+    int dashesAvailable = 3;
+
+    float dashCoolDownDuration = 5f;
 
 
     void Start()
@@ -95,7 +99,6 @@ public class Player : MonoBehaviour
         currentSpeed = moveSpeed;
         teleporter = null;
 
-        lastDashTimes = new float[dashCount];
 
         if(playerNum == PlayerNum.Player1){
             horizontalMove = "Horizontal";
@@ -353,17 +356,21 @@ public class Player : MonoBehaviour
 
             if (hit.collider != null) {
                 Debug.Log("hit: " + hit.collider.gameObject.name + ", tag: " + hit.collider.gameObject.tag + ", this player's enemy is: " + enemy);
-                //if (hit.collider.tag == enemy) {
+                if (hit.collider.gameObject.tag == enemy)
+                {
+                    
+                    //if (hit.collider.tag == enemy) {
                     //if (hit.distance < 2) {
-                        Debug.Log("CHIPS");
-                ScoreControl.liveCount -= 1;
-                        RoundEnd.EndRound(color);
+                    Debug.Log("CHIPS");
+                    ScoreControl.liveCount -= 1;
+                    RoundEnd.EndRound(color);
                     //slow down time after hit
-                //communicate to a different script that a player won, then turn off input
-                // particle effects
-                //then reload the 
-                //}
-                //}
+                    //communicate to a different script that a player won, then turn off input
+                    // particle effects
+                    //then reload the 
+                    //}
+                    //}
+                }
             }
         }
 
@@ -376,44 +383,39 @@ public class Player : MonoBehaviour
 
     }
 
-    void CheckDash () {
-
-        if (dashCount < 3) {
-            Debug.Log("dash cool down check. dash count: " + dashCount);
-            Debug.Log("dash time: " + (Time.time - lastDashTimes[dashCount]));
-            if (Time.time - lastDashTimes[dashCount] > dashCoolDownDuration)
-            {
-                Debug.Log("increasing dashCount");
-                dashCount++;
-            }    
+    bool DashAvailable () {
+        
+        for (int i = 0; i < dashTimers.Length; i++) {
+            if (dashTimers[i] <= 0) {
+                return true;
+            }
         }
 
-        Debug.Log("dash count: " + dashCount);
+        return false;
+    }
 
-        if (dashCount > 0) {
-            if (Input.GetButtonDown(dash))
+    void CheckDash () {
+
+        //Game pad Dash/////////////////////////////////////////////////////////////////////////
+        if (Input.GetButtonDown(dash))
+        {
+            Debug.Log("trying to dash");
+
+            if (DashAvailable())
             {
-                Vector2 dirToMouse = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
-                dirToMouse *= dashSpeed;
-                velocity.x += dirToMouse.x;
-                velocity.y += dirToMouse.y;
-                dashTimer = 0.25f;
+                int dashTimerIndex = 9999;
+                for (int i = 0; i < dashTimers.Length; i++)
+                {
+                    if (dashTimers[i] <= 0)
+                    {
+                        dashTimerIndex = i;
+                        break;
+                    }
+                }
 
-                dashStart = transform.position;
-                destination = transform.position + (Vector3)dirToMouse;
-
-                //Set the velocities to just equals
-                // make everymovement a coditional, if you dash you need a global timer to delay movement until the timer runs out
-                //
-                lastDashTimes[dashCount - 1] = Time.time;
-                dashCount--;
-            }
+                dashTimers[dashTimerIndex] = dashCoolDownDuration;
 
 
-            //Game pad Dash/////////////////////////////////////////////////////////////////////////
-            if (Input.GetButtonDown(dash))
-            {
-                Debug.Log("trying to dash");
                 //Vector2 dirToMouse = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
                 Vector2 dashDir = new Vector2(-1 * (Input.GetAxis(rightHorizontal)), Input.GetAxis(rightVertical)).normalized;
                 dashDir *= dashSpeed;
@@ -427,12 +429,25 @@ public class Player : MonoBehaviour
                 //Set the velocities to just equals
                 // make everymovement a coditional, if you dash you need a global timer to delay movement until the timer runs out
                 //
-                lastDashTimes[dashCount - 1] = Time.time;
-                dashCount--;
             }
-            //Game pad Dash/////////////////////////////////////////////////////////////////////////
-
         }
+        //Game pad Dash/////////////////////////////////////////////////////////////////////////
+
+
+        dashesAvailable = 0;
+        for (int i = 0; i < dashTimers.Length; i++)
+        {
+            dashTimers[i] -= Time.deltaTime;
+            if (dashTimers[i] <= 0) {
+                dashesAvailable++;
+            }
+            //Debug.Log("dash index: " + i + ". dash timer: " + dashTimers[i]);
+        }
+
+        // send info to ui
+        //create public array with references to ui images that were all ready created, 
+        // turn on how many dashes avaible and turn off those that aren't
+
 
     }
 
