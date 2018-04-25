@@ -9,6 +9,24 @@ public class RoundEnd : MonoBehaviour
     public Text redScoreUIText;
     public Text blueScoreUIText;
     public Image winStrobe;
+    public Image blueNum0;
+    public Image blueNum1;
+    public Image blueNum2;
+    public Image blueNum3;
+    public Image blueNum4;
+    public Image blueNum5;
+    public Image redNum0;
+    public Image redNum1;
+    public Image redNum2;
+    public Image redNum3;
+    public Image redNum4;
+    public Image redNum5;
+    string currentBlueNum;
+    string currentRedNum;
+
+
+
+
     //static int blueWinCount = 0;
     //static int redWinCount = 0;
 
@@ -28,8 +46,10 @@ public class RoundEnd : MonoBehaviour
         Player2Win = false;
         Time.timeScale = 1f;
         scored = false;
+      
         redScoreUIText.text = ScoreManager.redScore.ToString();
         blueScoreUIText.text = ScoreManager.blueScore.ToString();
+
     }
 
     // Update is called once per frame

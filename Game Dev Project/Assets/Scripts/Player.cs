@@ -46,6 +46,9 @@ public class Player : MonoBehaviour
     public Image DashCoolDownOne;
     public Image DashCoolDownTwo;
     public Image DashCoolDownThree;
+    public Image TeleporterCoolDownOne;
+    public Image TeleporterCoolDownTwo;
+
 
 
     float gravity;
@@ -512,6 +515,8 @@ public class Player : MonoBehaviour
                 dashesAvailable++;
             }
             //Debug.Log("dash index: " + i + ". dash timer: " + dashTimers[i]);
+
+            //yes its bad coding but it works for now 
             if (dashesAvailable == 1)
             {
                 DashCoolDownOne.gameObject.SetActive(true);
@@ -549,6 +554,21 @@ public class Player : MonoBehaviour
                 teleportersAvailable++;
             }
             //Debug.Log("dash index: " + i + ". dash timer: " + dashTimers[i]);
+            if (teleportersAvailable == 1)
+            {
+                TeleporterCoolDownOne.gameObject.SetActive(true);
+                TeleporterCoolDownTwo.gameObject.SetActive(false);
+            }
+            else if (teleportersAvailable == 2)
+            {
+                TeleporterCoolDownOne.gameObject.SetActive(true);
+                TeleporterCoolDownTwo.gameObject.SetActive(true);
+            }
+            else
+            {
+                TeleporterCoolDownOne.gameObject.SetActive(false);
+                TeleporterCoolDownTwo.gameObject.SetActive(false);
+            }
         }
 
         // send info to ui
