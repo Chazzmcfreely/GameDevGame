@@ -4856,6 +4856,21 @@ Prefab:
       propertyPath: scoreNums.Array.data[5]
       value: 
       objectReference: {fileID: 2076561238}
+    - target: {fileID: 114371344682410032, guid: 56eec0932fa97411f988bef98468ced5,
+        type: 2}
+      propertyPath: Dash
+      value: 
+      objectReference: {fileID: 8300000, guid: ce49579eebbdd4005ad64813b6bbcdb1, type: 3}
+    - target: {fileID: 114371344682410032, guid: 56eec0932fa97411f988bef98468ced5,
+        type: 2}
+      propertyPath: Teleport
+      value: 
+      objectReference: {fileID: 8300000, guid: 0afd483642a654d5b918ce6dd7b6e30b, type: 3}
+    - target: {fileID: 114371344682410032, guid: 56eec0932fa97411f988bef98468ced5,
+        type: 2}
+      propertyPath: Death
+      value: 
+      objectReference: {fileID: 8300000, guid: b27afe7457369416f9abfb3320587fb3, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56eec0932fa97411f988bef98468ced5, type: 2}
   m_IsPrefabParent: 0
@@ -5544,7 +5559,7 @@ Prefab:
         type: 2}
       propertyPath: Teleport
       value: 
-      objectReference: {fileID: 8300000, guid: 370f9898b4dbe49849180035f09bd1cc, type: 3}
+      objectReference: {fileID: 8300000, guid: 0afd483642a654d5b918ce6dd7b6e30b, type: 3}
     - target: {fileID: 114371344682410032, guid: 56eec0932fa97411f988bef98468ced5,
         type: 2}
       propertyPath: Death
@@ -10996,6 +11011,7 @@ GameObject:
   - component: {fileID: 1937233996}
   - component: {fileID: 1937233995}
   - component: {fileID: 1937233999}
+  - component: {fileID: 1937234000}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -11078,6 +11094,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pixelsPerUnit: 10
   verticalUnitsOnScreen: 10
+--- !u!114 &1937234000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1937233994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79a035bb7409f411c9de401e421896f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraCenterPos: {x: 0, y: 0, z: 0}
+  curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1958621277 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000946451932122, guid: 56eec0932fa97411f988bef98468ced5,

@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
 
     public float lives = 3;
 
-    bool isTeleporter = false;
+   // bool isTeleporter = false;
     GameObject teleporter;
 
     Controller2D controller;
@@ -87,7 +87,7 @@ public class Player : MonoBehaviour
     string horizontalMove;
     string verticalMove;
     string jump;
-    string self;
+    //string self;
     string enemy;
     string color;
     string rightHorizontal;
@@ -130,7 +130,7 @@ public class Player : MonoBehaviour
             horizontalMove = "Horizontal";
             verticalMove = "Vertical";
             jump = "Jump";
-            self = "Player1";
+           // self = "Player1";
             enemy = "Player2";
             color = "Red";
             rightHorizontal = "RightHorizontal";
@@ -143,7 +143,7 @@ public class Player : MonoBehaviour
             horizontalMove = "P2Horizontal";
             verticalMove = "P2Vertical";
             jump = "P2Jump"; //needs to be different
-            self = "Player2";
+            //self = "Player2";
             enemy = "Player1";
             color = "Blue";
             rightHorizontal = "P2RightHorizontal";
@@ -289,51 +289,53 @@ public class Player : MonoBehaviour
             {
             Debug.Log("Trying to teleport");
 
-                if (teleporterAvailable() && teleporter == null)
+            if (teleporterAvailable() && teleporter == null)
+            {
+                int teleporterTimerIndex = 9999;
+                for (int i = 0; i < teleporterTimers.Length; i++)
                 {
-                    int teleporterTimerIndex = 9999;
-                    for (int i = 0; i < teleporterTimers.Length; i++)
+                    if (teleporterTimers[i] <= 0)
                     {
-                        if (teleporterTimers[i] <= 0)
-                        {
-                            teleporterTimerIndex = i;
-                            break;
-                        }
+                        teleporterTimerIndex = i;
+                        break;
                     }
-
-                    teleporterTimers[teleporterTimerIndex] = teleporterCoolDownDuration;
-                    //make it only able to teleport when it has stoppped moving
-
-
-                    Vector3 MouseCords = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    Vector3 TeleporterRotation = new Vector3(MouseCords.x, MouseCords.y, 0f);
-                    Vector2 DirectionToMouse = MouseCords - transform.position;
-                    Vector2 dashDir = new Vector2(-1 * (Input.GetAxis(rightHorizontal)), Input.GetAxis(rightVertical)).normalized;
-
-
-
-                    DirectionToMouse.Normalize();
-                    float angleToMouse = Mathf.Rad2Deg * Mathf.Atan2(DirectionToMouse.y, DirectionToMouse.x) - 90;
-
-
-                    teleporter = Instantiate(TeleporterPrefab);
-                    //Physics2D.IgnoreCollision(teleporter.GetComponent<CircleCollider2D>(), playerCollider);
-
-                    for (int i = 0; i < playerColliders.Count; i++)
-                    {
-                        Physics2D.IgnoreCollision(teleporter.GetComponent<CircleCollider2D>(), playerColliders[i]);
-                    }
-
-                    teleporter.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-                    teleporter.transform.eulerAngles = new Vector3(0, 0, angle);
-
-                    teleporter.GetComponent<Rigidbody2D>().velocity = dashDir * TeleporterSpeed; ;
-                    teleporterBurst.Emit(100);
-
-                    isTeleporter = true;
-
                 }
-                else
+
+                teleporterTimers[teleporterTimerIndex] = teleporterCoolDownDuration;
+                //make it only able to teleport when it has stoppped moving
+
+
+                Vector3 MouseCords = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+               // Vector3 TeleporterRotation = new Vector3(MouseCords.x, MouseCords.y, 0f);
+                Vector2 DirectionToMouse = MouseCords - transform.position;
+                Vector2 dashDir = new Vector2(-1 * (Input.GetAxis(rightHorizontal)), Input.GetAxis(rightVertical)).normalized;
+
+
+
+                DirectionToMouse.Normalize();
+             //   float angleToMouse = Mathf.Rad2Deg * Mathf.Atan2(DirectionToMouse.y, DirectionToMouse.x) - 90;
+
+
+                teleporter = Instantiate(TeleporterPrefab);
+                //Physics2D.IgnoreCollision(teleporter.GetComponent<CircleCollider2D>(), playerCollider);
+
+                for (int i = 0; i < playerColliders.Count; i++)
+                {
+                    Physics2D.IgnoreCollision(teleporter.GetComponent<CircleCollider2D>(), playerColliders[i]);
+                }
+
+                teleporter.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+                teleporter.transform.eulerAngles = new Vector3(0, 0, angle);
+
+                teleporter.GetComponent<Rigidbody2D>().velocity = dashDir * TeleporterSpeed; ;
+                teleporterBurst.Emit(100);
+
+                //isTeleporter = true;
+
+            }
+            else
+            {
+                if (teleporter != null)
                 {
                     source.PlayOneShot(Teleport, 0.5f);
 
@@ -346,7 +348,7 @@ public class Player : MonoBehaviour
                     teleporter = null;
 
                 }
-
+            }
 
             }
 
@@ -494,7 +496,9 @@ public class Player : MonoBehaviour
             {
                 if (DashAvailable())
                 {
-                    source.PlayOneShot(Dash, 1f);
+                    source.PlayOneShot(Dash, 0.8f);
+                    screenShake shaker = GameObject.Find("Main Camera").GetComponent<screenShake>();
+                    shaker.Screenshake(10f, 10f);
 
                     int dashTimerIndex = 9999;
                     for (int i = 0; i < dashTimers.Length; i++)

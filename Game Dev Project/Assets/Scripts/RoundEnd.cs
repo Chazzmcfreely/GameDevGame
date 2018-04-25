@@ -65,8 +65,8 @@ public class RoundEnd : MonoBehaviour
             winStrobe.gameObject.SetActive(true);
         }
         else{
-            winStrobe.gameObject.SetActive(false);
             winStrobe.color = Color.white;
+            winStrobe.gameObject.SetActive(false);
         }
 
     }
