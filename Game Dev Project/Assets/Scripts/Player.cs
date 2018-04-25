@@ -48,7 +48,9 @@ public class Player : MonoBehaviour
     public Image DashCoolDownThree;
     public Image TeleporterCoolDownOne;
     public Image TeleporterCoolDownTwo;
+    public Image[] scoreNums = new Image[6];
 
+ 
 
 
     float gravity;
@@ -89,6 +91,7 @@ public class Player : MonoBehaviour
     string rightVertical;
     string dash;
     string teleport;
+    int score;
 
     float[] dashTimers = new float[3] {
         0, 0, 0
@@ -158,10 +161,12 @@ public class Player : MonoBehaviour
     void Update() 
     {
         if(playerNum == PlayerNum.Player1){
+            score = ScoreManager.RedScore;
             if(RoundEnd.Player2Win){
                 return;
             }
         }else if(playerNum == PlayerNum.Player2){
+            score = ScoreManager.BlueScore;
             if (RoundEnd.Player1Win)
             {
                 return;
@@ -342,8 +347,16 @@ public class Player : MonoBehaviour
 
         //////////////////////////Teleporters /////////////////////////////
 
+        //////score handling//////
+        for (int i = 0; i < scoreNums.Length; i++){
+            if (i == score) {
+                scoreNums[i].gameObject.SetActive(true);
+            }
+            else {
+                scoreNums[i].gameObject.SetActive(false);
+            }
 
-
+        }
 
 
       
@@ -601,7 +614,17 @@ public class Player : MonoBehaviour
         }
 
     }
-
+    /*
+    void HandleRedScore() {
+        string currentScore;
+        for (int i = 0; i <= 5; i++) {
+            if (i == ScoreManager.redScore) {
+                currentScore = "redNum" + ScoreManager.redScore.ToString();
+                currentScore.gameObject.SetActive(true);
+            }
+        }
+    }
+*/
 
 
 }

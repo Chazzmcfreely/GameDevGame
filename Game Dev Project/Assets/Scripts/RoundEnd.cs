@@ -15,12 +15,7 @@ public class RoundEnd : MonoBehaviour
     public Image blueNum3;
     public Image blueNum4;
     public Image blueNum5;
-    public Image redNum0;
-    public Image redNum1;
-    public Image redNum2;
-    public Image redNum3;
-    public Image redNum4;
-    public Image redNum5;
+ 
     string currentBlueNum;
     string currentRedNum;
 
@@ -47,8 +42,8 @@ public class RoundEnd : MonoBehaviour
         Time.timeScale = 1f;
         scored = false;
       
-        redScoreUIText.text = ScoreManager.redScore.ToString();
-        blueScoreUIText.text = ScoreManager.blueScore.ToString();
+        redScoreUIText.text = ScoreManager.RedScore.ToString();
+        blueScoreUIText.text = ScoreManager.BlueScore.ToString();
 
     }
 
@@ -88,22 +83,22 @@ public class RoundEnd : MonoBehaviour
             if (playerColor == "Blue")
             {
                 Player2Win = true;
-                ScoreManager.blueScore++;
-                if(ScoreManager.blueScore >= 5){
+                ScoreManager.BlueScore++;
+                if(ScoreManager.BlueScore >= 5){
                     SceneManager.LoadScene(3);
                 }
-                Debug.Log(ScoreManager.blueScore);
+                Debug.Log(ScoreManager.BlueScore);
             }
 
             if (playerColor == "Red")
             {
                 Player1Win = true;
-                ScoreManager.redScore++;
-                if (ScoreManager.redScore >= 5)
+                ScoreManager.RedScore++;
+                if (ScoreManager.RedScore >= 5)
                 {
                     SceneManager.LoadScene(2);
                 }
-                Debug.Log(ScoreManager.redScore);
+                Debug.Log(ScoreManager.RedScore);
             }
             scored = true;
         }

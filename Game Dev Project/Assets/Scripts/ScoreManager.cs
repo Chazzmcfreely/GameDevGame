@@ -1,4 +1,4 @@
 ﻿public class ScoreManager {
-    public static int redScore = 0;
-    public static int blueScore = 0;
+    public static int RedScore = 0;
+    public static int BlueScore = 0;
 }
