@@ -269,12 +269,14 @@ public class Player : MonoBehaviour
             
             if (Input.GetButtonDown(teleport))
             {
+            Debug.Log("Trying to teleport");
+
                 if (teleporterAvailable() && teleporter == null)
                 {
                     int teleporterTimerIndex = 9999;
                     for (int i = 0; i < teleporterTimers.Length; i++)
                     {
-                        if (dashTimers[i] <= 0)
+                        if (teleporterTimers[i] <= 0)
                         {
                             teleporterTimerIndex = i;
                             break;
@@ -428,6 +430,8 @@ public class Player : MonoBehaviour
         }
 
     }
+    //update ends here
+
 
     bool teleporterAvailable () {
         for (int i = 0; i < teleporterTimers.Length; i++) {
@@ -450,41 +454,52 @@ public class Player : MonoBehaviour
         return false;
     }
 
+    bool isAiming()
+    {
+        if (Input.GetAxis(rightHorizontal) != 0 || Input.GetAxis(rightVertical) != 0) {
+            return true;
+        }
+
+        return false;
+    }
+
     void CheckDash () {
 
         //Game pad Dash/////////////////////////////////////////////////////////////////////////
         if (Input.GetButtonDown(dash))
         {
             Debug.Log("trying to dash");
-
-            if (DashAvailable())
+            if (isAiming() == true)
             {
-                int dashTimerIndex = 9999;
-                for (int i = 0; i < dashTimers.Length; i++)
+                if (DashAvailable())
                 {
-                    if (dashTimers[i] <= 0)
+                    int dashTimerIndex = 9999;
+                    for (int i = 0; i < dashTimers.Length; i++)
                     {
-                        dashTimerIndex = i;
-                        break;
+                        if (dashTimers[i] <= 0)
+                        {
+                            dashTimerIndex = i;
+                            break;
+                        }
                     }
+
+                    dashTimers[dashTimerIndex] = dashCoolDownDuration;
+
+
+                    //Vector2 dirToMouse = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+                    Vector2 dashDir = new Vector2(-1 * (Input.GetAxis(rightHorizontal)), Input.GetAxis(rightVertical)).normalized;
+                    dashDir *= dashSpeed;
+                    velocity.x += Input.GetAxis(rightHorizontal);
+                    velocity.y += Input.GetAxis(rightVertical);
+                    dashDuration = 0.25f;
+
+                    dashStart = transform.position;
+                    destination = transform.position + (Vector3)dashDir;
+
+                    //Set the velocities to just equals
+                    // make everymovement a coditional, if you dash you need a global timer to delay movement until the timer runs out
+                    //
                 }
-
-                dashTimers[dashTimerIndex] = dashCoolDownDuration;
-
-
-                //Vector2 dirToMouse = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
-                Vector2 dashDir = new Vector2(-1 * (Input.GetAxis(rightHorizontal)), Input.GetAxis(rightVertical)).normalized;
-                dashDir *= dashSpeed;
-                velocity.x += Input.GetAxis(rightHorizontal);
-                velocity.y += Input.GetAxis(rightVertical);
-                dashDuration = 0.25f;
-
-                dashStart = transform.position;
-                destination = transform.position + (Vector3)dashDir;
-
-                //Set the velocities to just equals
-                // make everymovement a coditional, if you dash you need a global timer to delay movement until the timer runs out
-                //
             }
         }
         //Game pad Dash/////////////////////////////////////////////////////////////////////////
