@@ -56,13 +56,6 @@ public class RoundEnd : MonoBehaviour
             winStrobe.color = Color.white;
         }
 
-        if (ScoreManager.redScore == 5){
-            SceneManager.LoadScene(2);
-        }
-        else if (ScoreManager.blueScore == 5){
-            SceneManager.LoadScene(3);
-        }
-
     }
 
 
@@ -77,7 +70,7 @@ public class RoundEnd : MonoBehaviour
                 Player2Win = true;
                 ScoreManager.blueScore++;
                 if(ScoreManager.blueScore >= 5){
-                    ///////final winscene here
+                    SceneManager.LoadScene(3);
                 }
                 Debug.Log(ScoreManager.blueScore);
             }
@@ -88,7 +81,7 @@ public class RoundEnd : MonoBehaviour
                 ScoreManager.redScore++;
                 if (ScoreManager.redScore >= 5)
                 {
-                    ///////final winscene here
+                    SceneManager.LoadScene(2);
                 }
                 Debug.Log(ScoreManager.redScore);
             }

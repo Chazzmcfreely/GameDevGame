@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour
@@ -40,6 +42,11 @@ public class Player : MonoBehaviour
     public float wallStickTime = .1f;
     float timeToWallUnstick;
     public float TeleporterSpeed;
+
+    public Image DashCoolDownOne;
+    public Image DashCoolDownTwo;
+    public Image DashCoolDownThree;
+
 
     float gravity;
     float maxJumpVelocity;
@@ -406,21 +413,12 @@ public class Player : MonoBehaviour
                 Debug.Log("hit: " + hit.collider.gameObject.name + ", tag: " + hit.collider.gameObject.tag + ", this player's enemy is: " + enemy);
                 if (hit.collider.gameObject.tag == enemy)
                 {
-                    
-                    //if (hit.collider.tag == enemy) {
-                    //if (hit.distance < 2) {
-                   // Debug.Log("CHIPS");
-                    //ScoreControl.liveCount -= 1;
                     RoundEnd.EndRound(color);
-                    //slow down time after hit
-                    //communicate to a different script that a player won, then turn off input
-                    // particle effects
-                    //then reload the 
-                    //}
-                    //}
                 }
             }
         }
+
+
 
         controller.Move(velocity * Time.deltaTime, input);
 
@@ -509,10 +507,37 @@ public class Player : MonoBehaviour
         for (int i = 0; i < dashTimers.Length; i++)
         {
             dashTimers[i] -= Time.deltaTime;
-            if (dashTimers[i] <= 0) {
+            if (dashTimers[i] <= 0)
+            {
                 dashesAvailable++;
             }
             //Debug.Log("dash index: " + i + ". dash timer: " + dashTimers[i]);
+            if (dashesAvailable == 1)
+            {
+                DashCoolDownOne.gameObject.SetActive(true);
+                DashCoolDownTwo.gameObject.SetActive(false);
+                DashCoolDownThree.gameObject.SetActive(false);
+
+            }
+            else if (dashesAvailable == 2)
+            {
+                DashCoolDownOne.gameObject.SetActive(true);
+                DashCoolDownTwo.gameObject.SetActive(true);
+                DashCoolDownThree.gameObject.SetActive(false);
+            }
+            else if (dashesAvailable == 3)
+            {
+                DashCoolDownOne.gameObject.SetActive(true);
+                DashCoolDownTwo.gameObject.SetActive(true);
+                DashCoolDownThree.gameObject.SetActive(true);
+
+            }
+            else
+            {
+                DashCoolDownOne.gameObject.SetActive(false);
+                DashCoolDownTwo.gameObject.SetActive(false);
+                DashCoolDownThree.gameObject.SetActive(false);
+            }
         }
 
         teleportersAvailable = 0;
