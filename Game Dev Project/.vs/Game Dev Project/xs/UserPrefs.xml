@@ -3,8 +3,8 @@
     <Files>
       <File FileName="Assets/Scripts/Controller2D.cs" Line="260" Column="24" />
       <File FileName="Assets/Scripts/Teleporter.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/RoundEnd.cs" Line="101" Column="41" />
-      <File FileName="Assets/Scripts/Player.cs" Line="353" Column="1" />
+      <File FileName="Assets/Scripts/RoundEnd.cs" Line="68" Column="27" />
+      <File FileName="Assets/Scripts/Player.cs" Line="365" Column="35" />
       <File FileName="Assets/Scripts/ScoreManager.cs" Line="3" Column="24" />
     </Files>
   </MonoDevelop.Ide.Workbench>
