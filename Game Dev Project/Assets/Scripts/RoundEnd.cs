@@ -42,8 +42,6 @@ public class RoundEnd : MonoBehaviour
         Time.timeScale = 1f;
         scored = false;
       
-        redScoreUIText.text = ScoreManager.RedScore.ToString();
-        blueScoreUIText.text = ScoreManager.BlueScore.ToString();
 
     }
 
