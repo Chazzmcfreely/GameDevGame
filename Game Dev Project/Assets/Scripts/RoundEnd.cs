@@ -45,10 +45,10 @@ public class RoundEnd : MonoBehaviour
         }
 
         if(Player1Win){
-            winStrobe.color = new Color(1, 0, 0, 0.65f);
+            winStrobe.color = new Color(1, 0, 0.2f, 0.65f);
             winStrobe.gameObject.SetActive(true);
         }else if(Player2Win){
-            winStrobe.color = new Color(0, 0, 1, 0.65f);
+            winStrobe.color = new Color(0.26f, 0.8f, 1, 0.65f);
             winStrobe.gameObject.SetActive(true);
         }
         else{

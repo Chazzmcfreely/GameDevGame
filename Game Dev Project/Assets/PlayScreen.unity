@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.5448277, b: 1, a: 1}
+  m_Color: {r: 0.28235295, g: 0.7607844, b: 0.94117653, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4233,7 +4233,7 @@ Prefab:
         type: 3}
     - target: {fileID: 4705990984961138, guid: 56eec0932fa97411f988bef98468ced5, type: 2}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 4705990984961138, guid: 56eec0932fa97411f988bef98468ced5, type: 2}
       propertyPath: m_LocalScale.y
@@ -4335,6 +4335,21 @@ Prefab:
       value: 
       objectReference: {fileID: 1213988076247712, guid: 1cacd042b9c4f4494a4f37d1b6895668,
         type: 2}
+    - target: {fileID: 114371344682410032, guid: 56eec0932fa97411f988bef98468ced5,
+        type: 2}
+      propertyPath: teleporterBurst
+      value: 
+      objectReference: {fileID: 198727619155016942, guid: 1cacd042b9c4f4494a4f37d1b6895668,
+        type: 2}
+    - target: {fileID: 114371344682410032, guid: 56eec0932fa97411f988bef98468ced5,
+        type: 2}
+      propertyPath: walkingParticles
+      value: 
+      objectReference: {fileID: 1934899803}
+    - target: {fileID: 4705990984961138, guid: 56eec0932fa97411f988bef98468ced5, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56eec0932fa97411f988bef98468ced5, type: 2}
   m_IsPrefabParent: 0
@@ -4793,7 +4808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.20000002, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5506,7 +5521,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -66350465
+  randomSeed: 2145006194
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -8805,7 +8820,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BackGroundColor: {r: 0.46323532, g: 0.46323532, b: 0.46323532, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
