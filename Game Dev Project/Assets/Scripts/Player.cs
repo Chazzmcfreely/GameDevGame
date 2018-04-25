@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
     float velocityXSmoothing;
     public float currentSpeed;
     public float dashSpeed = 40;
-    float dashTimer = 0;
+    float dashDuration = 0;
     Vector3 destination;
     Vector3 dashStart;
 
@@ -84,9 +84,16 @@ public class Player : MonoBehaviour
         0, 0, 0
     };
 
+    float[] teleporterTimers = new float[2] {
+        0, 0
+    };
+
+
     int dashesAvailable = 3;
+    int teleportersAvailable = 2;
 
     float dashCoolDownDuration = 5f;
+    float teleporterCoolDownDuration = 10f;
 
 
     void Start()
@@ -163,10 +170,10 @@ public class Player : MonoBehaviour
        // if (roundOver){
          //   return; 
         //}
-        if (dashTimer > 0) {
-            dashTimer -= Time.deltaTime;
-            if (dashTimer < 0) {
-                dashTimer = 0;
+        if (dashDuration > 0) {
+            dashDuration -= Time.deltaTime;
+            if (dashDuration < 0) {
+                dashDuration = 0;
             }
         }
         //currentSpeed = Mathf.Lerp(currentSpeed, moveSpeed, 0.2f);
@@ -252,54 +259,84 @@ public class Player : MonoBehaviour
             anim.SetBool("WallSliding", wallSliding);   
         }
 
-        if (Input.GetButtonDown(teleport))
-        {
-            //make it only able to teleport when it has stoppped moving
 
-            if (teleporter == null)
+        ////// <summary>
+        /// TELEPORTERS
+        /// </summary>
+        /// <returns><c>true</c>, if available was teleportered, <c>false</c> otherwise.</returns>
+       // CheckTeleporter();
+
+            
+            if (Input.GetButtonDown(teleport))
             {
-                Vector3 MouseCords = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Vector3 TeleporterRotation = new Vector3(MouseCords.x, MouseCords.y, 0f);
-                Vector2 DirectionToMouse = MouseCords - transform.position;
-                Vector2 dashDir = new Vector2(-1 * (Input.GetAxis(rightHorizontal)), Input.GetAxis(rightVertical)).normalized;
-
-
-
-                DirectionToMouse.Normalize();
-                float angleToMouse = Mathf.Rad2Deg * Mathf.Atan2(DirectionToMouse.y, DirectionToMouse.x) - 90;
-
-
-                teleporter = Instantiate(TeleporterPrefab);
-                //Physics2D.IgnoreCollision(teleporter.GetComponent<CircleCollider2D>(), playerCollider);
-
-                for (int i = 0; i < playerColliders.Count; i++)
+                if (teleporterAvailable() && teleporter == null)
                 {
-                    Physics2D.IgnoreCollision(teleporter.GetComponent<CircleCollider2D>(), playerColliders[i]);
+                    int teleporterTimerIndex = 9999;
+                    for (int i = 0; i < teleporterTimers.Length; i++)
+                    {
+                        if (dashTimers[i] <= 0)
+                        {
+                            teleporterTimerIndex = i;
+                            break;
+                        }
+                    }
+
+                    teleporterTimers[teleporterTimerIndex] = teleporterCoolDownDuration;
+                    //make it only able to teleport when it has stoppped moving
+
+
+                    Vector3 MouseCords = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    Vector3 TeleporterRotation = new Vector3(MouseCords.x, MouseCords.y, 0f);
+                    Vector2 DirectionToMouse = MouseCords - transform.position;
+                    Vector2 dashDir = new Vector2(-1 * (Input.GetAxis(rightHorizontal)), Input.GetAxis(rightVertical)).normalized;
+
+
+
+                    DirectionToMouse.Normalize();
+                    float angleToMouse = Mathf.Rad2Deg * Mathf.Atan2(DirectionToMouse.y, DirectionToMouse.x) - 90;
+
+
+                    teleporter = Instantiate(TeleporterPrefab);
+                    //Physics2D.IgnoreCollision(teleporter.GetComponent<CircleCollider2D>(), playerCollider);
+
+                    for (int i = 0; i < playerColliders.Count; i++)
+                    {
+                        Physics2D.IgnoreCollision(teleporter.GetComponent<CircleCollider2D>(), playerColliders[i]);
+                    }
+
+                    teleporter.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+                    teleporter.transform.eulerAngles = new Vector3(0, 0, angle);
+
+                    teleporter.GetComponent<Rigidbody2D>().velocity = dashDir * TeleporterSpeed; ;
+                    teleporterBurst.Emit(100);
+
+                    isTeleporter = true;
+
+                }
+                else
+                {
+                    transform.position = teleporter.transform.position;
+                    //teleporterBurst.Emit(100);
+                    // use it by teleporting
+
+
+                    Destroy(teleporter);
+                    teleporter = null;
+
                 }
 
-                teleporter.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-                teleporter.transform.eulerAngles = new Vector3(0, 0, angle);
-
-                teleporter.GetComponent<Rigidbody2D>().velocity = dashDir * TeleporterSpeed; ;
-                teleporterBurst.Emit(100);
-
-                isTeleporter = true;
-            }
-            else
-            {
-                transform.position = teleporter.transform.position;
-                //teleporterBurst.Emit(100);
-                // use it by teleporting
-
-
-                Destroy(teleporter);
-                teleporter = null;
 
             }
 
-        } 
+        //////////////////////////Teleporters /////////////////////////////
 
 
+
+
+
+      
+
+        /////////////////////// Jumping ////////////////////
         if (Input.GetButtonDown(jump)) 
         {
             if (wallSliding)
@@ -343,13 +380,16 @@ public class Player : MonoBehaviour
             }
 
         }
+        ////////////////////////////////////////////// Jumping //////////////////////////
+
+
 
     
         velocity.y += gravity * Time.deltaTime;
 
         CheckDash();
 
-        if (dashTimer > 0)
+        if (dashDuration > 0)
         {
             Vector3 lineToDestination = destination - transform.position;
             lineToDestination.Normalize();
@@ -367,8 +407,8 @@ public class Player : MonoBehaviour
                     
                     //if (hit.collider.tag == enemy) {
                     //if (hit.distance < 2) {
-                    Debug.Log("CHIPS");
-                    ScoreControl.liveCount -= 1;
+                   // Debug.Log("CHIPS");
+                    //ScoreControl.liveCount -= 1;
                     RoundEnd.EndRound(color);
                     //slow down time after hit
                     //communicate to a different script that a player won, then turn off input
@@ -387,6 +427,16 @@ public class Player : MonoBehaviour
             velocity.y = 0;
         }
 
+    }
+
+    bool teleporterAvailable () {
+        for (int i = 0; i < teleporterTimers.Length; i++) {
+            if (teleporterTimers[i] <= 0) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     bool DashAvailable () {
@@ -427,7 +477,7 @@ public class Player : MonoBehaviour
                 dashDir *= dashSpeed;
                 velocity.x += Input.GetAxis(rightHorizontal);
                 velocity.y += Input.GetAxis(rightVertical);
-                dashTimer = 0.25f;
+                dashDuration = 0.25f;
 
                 dashStart = transform.position;
                 destination = transform.position + (Vector3)dashDir;
@@ -446,6 +496,17 @@ public class Player : MonoBehaviour
             dashTimers[i] -= Time.deltaTime;
             if (dashTimers[i] <= 0) {
                 dashesAvailable++;
+            }
+            //Debug.Log("dash index: " + i + ". dash timer: " + dashTimers[i]);
+        }
+
+        teleportersAvailable = 0;
+        for (int i = 0; i < teleporterTimers.Length; i++)
+        {
+            teleporterTimers[i] -= Time.deltaTime;
+            if (teleporterTimers[i] <= 0)
+            {
+                teleportersAvailable++;
             }
             //Debug.Log("dash index: " + i + ". dash timer: " + dashTimers[i]);
         }
