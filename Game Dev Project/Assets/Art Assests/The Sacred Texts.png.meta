@@ -1,9 +1,16 @@
 fileFormatVersion: 2
 guid: cc32097695a954b88b66573518a5043f
-timeCreated: 1524655605
+timeCreated: 1524662766
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Sad bots only
+    21300002: The Sacred Texts_1
+    21300004: The Sacred Texts_2
+    21300006: Blue Wins
+    21300008: The Sacred Texts_4
+    21300010: Red Wins
+    21300012: The Sacred Texts_6
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -76,7 +83,105 @@ TextureImporter:
     overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Sad bots only
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 80
+        width: 97
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: The Sacred Texts_1
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 80
+        width: 33
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: The Sacred Texts_2
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 80
+        width: 31
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Blue Wins
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 53
+        width: 69
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: The Sacred Texts_4
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 54
+        width: 33
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Red Wins
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 38
+        width: 61
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: The Sacred Texts_6
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 38
+        width: 33
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 
