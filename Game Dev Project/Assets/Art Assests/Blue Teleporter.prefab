@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114505946240574006}
   - component: {fileID: 58981290833596022}
   m_Layer: 8
-  m_Name: Teleporter
+  m_Name: Blue Teleporter
   m_TagString: Teleporter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -166,7 +166,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300002, guid: 92bfec694cb6a42b89af29722fdbce9a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 92bfec694cb6a42b89af29722fdbce9a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

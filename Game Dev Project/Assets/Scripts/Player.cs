@@ -29,6 +29,9 @@ public class Player : MonoBehaviour
     public RoundEnd roundEnd;
     public Animator anim;
 
+    public ParticleSystem walkingParticles;
+    public ParticleSystem teleporterBurst;
+
     public Vector2 wallJumpClimb;
     public Vector2 wallJumpHop;
     public Vector2 wallJumpLeap;
@@ -203,6 +206,8 @@ public class Player : MonoBehaviour
             //anim.SetTrigger("Jump");
         }
 
+   
+
 
 
 
@@ -276,13 +281,14 @@ public class Player : MonoBehaviour
                 teleporter.transform.eulerAngles = new Vector3(0, 0, angle);
 
                 teleporter.GetComponent<Rigidbody2D>().velocity = dashDir * TeleporterSpeed; ;
+                teleporterBurst.Emit(100);
 
                 isTeleporter = true;
             }
             else
             {
                 transform.position = teleporter.transform.position;
-
+                //teleporterBurst.Emit(100);
                 // use it by teleporting
 
 
