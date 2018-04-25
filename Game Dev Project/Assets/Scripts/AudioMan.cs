@@ -19,7 +19,7 @@ public class AudioMan : MonoBehaviour {
     {
   
         source = GetComponent<AudioSource>();
-        source.PlayOneShot(SoundTrack, 0.5f);
+        source.PlayOneShot(SoundTrack, 0.3f);
 
     }
 

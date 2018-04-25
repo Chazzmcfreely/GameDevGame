@@ -30,7 +30,7 @@ public class RoundEnd : MonoBehaviour
 
     public static bool roundOver = false;
 
-    private float reloadTimer = 1f;
+    private float reloadTimer = 1.1f;
 
     private static bool scored = false;
 

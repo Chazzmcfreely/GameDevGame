@@ -5535,6 +5535,21 @@ Prefab:
       propertyPath: scoreNums.Array.data[5]
       value: 
       objectReference: {fileID: 1706162124}
+    - target: {fileID: 114371344682410032, guid: 56eec0932fa97411f988bef98468ced5,
+        type: 2}
+      propertyPath: Dash
+      value: 
+      objectReference: {fileID: 8300000, guid: ce49579eebbdd4005ad64813b6bbcdb1, type: 3}
+    - target: {fileID: 114371344682410032, guid: 56eec0932fa97411f988bef98468ced5,
+        type: 2}
+      propertyPath: Teleport
+      value: 
+      objectReference: {fileID: 8300000, guid: 370f9898b4dbe49849180035f09bd1cc, type: 3}
+    - target: {fileID: 114371344682410032, guid: 56eec0932fa97411f988bef98468ced5,
+        type: 2}
+      propertyPath: Death
+      value: 
+      objectReference: {fileID: 8300000, guid: b27afe7457369416f9abfb3320587fb3, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56eec0932fa97411f988bef98468ced5, type: 2}
   m_IsPrefabParent: 0

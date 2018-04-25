@@ -68,6 +68,9 @@ public class Player : MonoBehaviour
     public AudioClip Jump;
     public AudioClip runOne; 
     public AudioClip runTwo;
+    public AudioClip Dash;
+    public AudioClip Teleport;
+    public AudioClip Death;
 
 
 
@@ -332,6 +335,8 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
+                    source.PlayOneShot(Teleport, 0.5f);
+
                     transform.position = teleporter.transform.position;
                     //teleporterBurst.Emit(100);
                     // use it by teleporting
@@ -429,6 +434,8 @@ public class Player : MonoBehaviour
                 Debug.Log("hit: " + hit.collider.gameObject.name + ", tag: " + hit.collider.gameObject.tag + ", this player's enemy is: " + enemy);
                 if (hit.collider.gameObject.tag == enemy)
                 {
+                    source.PlayOneShot(Death, 1f);
+
                     RoundEnd.EndRound(color);
                 }
             }
@@ -487,6 +494,8 @@ public class Player : MonoBehaviour
             {
                 if (DashAvailable())
                 {
+                    source.PlayOneShot(Dash, 1f);
+
                     int dashTimerIndex = 9999;
                     for (int i = 0; i < dashTimers.Length; i++)
                     {
