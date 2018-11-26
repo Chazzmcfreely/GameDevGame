@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
     float teleporterCoolDownDuration = 10f;
 
    
-    Hit_pause hit_Pause;
+   // Hit_pause hit_Pause;
 
     void Start()
     {
@@ -513,7 +513,7 @@ public class Player : MonoBehaviour
                     }
 
 
-                    hit_Pause.doHitPause = true; 
+                    //hit_Pause.doHitPause = true; 
 
                     dashTimers[dashTimerIndex] = dashCoolDownDuration;
 
