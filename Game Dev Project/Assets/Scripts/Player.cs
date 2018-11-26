@@ -111,6 +111,8 @@ public class Player : MonoBehaviour
     float dashCoolDownDuration = 5f;
     float teleporterCoolDownDuration = 10f;
 
+   
+    Hit_pause hit_Pause;
 
     void Start()
     {
@@ -509,6 +511,9 @@ public class Player : MonoBehaviour
                             break;
                         }
                     }
+
+
+                    hit_Pause.doHitPause = true; 
 
                     dashTimers[dashTimerIndex] = dashCoolDownDuration;
 
