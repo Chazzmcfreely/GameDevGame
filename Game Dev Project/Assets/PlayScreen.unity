@@ -6809,6 +6809,11 @@ Prefab:
       propertyPath: Death
       value: 
       objectReference: {fileID: 8300000, guid: b27afe7457369416f9abfb3320587fb3, type: 3}
+    - target: {fileID: 114371344682410032, guid: 56eec0932fa97411f988bef98468ced5,
+        type: 2}
+      propertyPath: hitPauseTimer
+      value: 0.02
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56eec0932fa97411f988bef98468ced5, type: 2}
   m_IsPrefabAsset: 0
@@ -13567,7 +13572,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.79375
+  orthographic size: 4.8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -13750,19 +13755,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4705990984961138, guid: 56eec0932fa97411f988bef98468ced5,
     type: 2}
   m_PrefabInternal: {fileID: 591049939}
---- !u!114 &1958621286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1958621277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61f5e46f9e7c849c3aca6442f7e63f9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  duration: 0.5
-  doHitPause: 0
 --- !u!1 &1961553245
 GameObject:
   m_ObjectHideFlags: 0
@@ -13955,19 +13947,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4705990984961138, guid: 56eec0932fa97411f988bef98468ced5,
     type: 2}
   m_PrefabInternal: {fileID: 762868331}
---- !u!114 &1970204774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1970204765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61f5e46f9e7c849c3aca6442f7e63f9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  duration: 0.5
-  doHitPause: 0
 --- !u!1 &2012039623
 GameObject:
   m_ObjectHideFlags: 0

@@ -64,8 +64,9 @@ public class Controller2D : MonoBehaviour
     {
         float directionX = collisions.faceDir;
         float rayLength = Mathf.Abs(velocity.x) + skinWidth;
+        //length of raycast ^ if too little will go through wall 
 
-        if(Mathf.Abs(velocity.x) < skinWidth)
+        if (Mathf.Abs(velocity.x) < skinWidth)
         {
             rayLength = 2 * skinWidth;
         }
@@ -266,5 +267,5 @@ public class Controller2D : MonoBehaviour
             slopeAngle = 0;
         }
     }
-
+   
 }
