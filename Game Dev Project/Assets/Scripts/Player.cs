@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
     float gravity;
     float maxJumpVelocity;
     float minJumpVelocity;
-    Vector3 velocity;
+   public Vector3 velocity;
     float velocityXSmoothing;
     public float currentSpeed;
     public float dashSpeed = 40;
@@ -72,7 +72,10 @@ public class Player : MonoBehaviour
     public AudioClip Teleport;
     public AudioClip Death;
 
-
+    public float hitPauseTimer = .05f;
+    float hitPauseOriginal = 0f;
+    public bool hitPauseNow = false;
+    public bool hitPauseDone = false;
 
     public float lives = 3;
 
@@ -112,7 +115,7 @@ public class Player : MonoBehaviour
     float teleporterCoolDownDuration = 10f;
 
    
-   // Hit_pause hit_Pause;
+  //Hit_pause hit_Pause;
 
     void Start()
     {
@@ -126,7 +129,7 @@ public class Player : MonoBehaviour
         print("Gravity: " + gravity + "Jump Velocity: " + maxJumpVelocity);
         currentSpeed = moveSpeed;
         teleporter = null;
-
+       // hit_Pause = GetComponent<Hit_pause>();
 
         if(playerNum == PlayerNum.Player1){
             horizontalMove = "Horizontal";
@@ -161,6 +164,8 @@ public class Player : MonoBehaviour
             playerColliders.Add(players[i].GetComponent<BoxCollider2D>());
             //Debug.Log(players[i].name);
         }
+
+        hitPauseOriginal = hitPauseTimer;
     }
 
     void Update() 
@@ -454,6 +459,16 @@ public class Player : MonoBehaviour
             velocity.y = 0;
         }
 
+        ///Hit Pause Section
+        if (hitPauseNow == true)
+        {
+            hitPauseTimer -= Time.deltaTime;
+            if (hitPauseTimer <= 0)
+            {
+                DashNow();
+            }
+        }
+
     }
     //update ends here
 
@@ -488,56 +503,15 @@ public class Player : MonoBehaviour
         return false;
     }
 
-    void CheckDash () {
+    void CheckDash()
+    {
 
         //Game pad Dash/////////////////////////////////////////////////////////////////////////
         if (Input.GetButtonDown(dash))
         {
-            Debug.Log("trying to dash");
-            if (isAiming() == true)
-            {
-                if (DashAvailable())
-                {
-                    source.PlayOneShot(Dash, 0.8f);
-                    screenShake shaker = GameObject.Find("Main Camera").GetComponent<screenShake>();
-                    shaker.Screenshake(10f, 10f);
-
-                    int dashTimerIndex = 9999;
-                    for (int i = 0; i < dashTimers.Length; i++)
-                    {
-                        if (dashTimers[i] <= 0)
-                        {
-                            dashTimerIndex = i;
-                            break;
-                        }
-                    }
-
-
-                    //hit_Pause.doHitPause = true; 
-
-                    dashTimers[dashTimerIndex] = dashCoolDownDuration;
-
-
-                    //Vector2 dirToMouse = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
-                    Vector2 dashDir = new Vector2(-1 * (Input.GetAxis(rightHorizontal)), Input.GetAxis(rightVertical)).normalized;
-                    dashDir *= dashSpeed;
-                    velocity.x += Input.GetAxis(rightHorizontal);
-                    velocity.y += Input.GetAxis(rightVertical);
-                    dashDuration = 0.25f;
-
-                    dashStart = transform.position;
-                    destination = transform.position + (Vector3)dashDir;
-
-                    //Set the velocities to just equals
-                    // make everymovement a coditional, if you dash you need a global timer to delay movement until the timer runs out
-                    //
-                }
-            }
+            hitPauseNow = true;
         }
-        //Game pad Dash/////////////////////////////////////////////////////////////////////////
-
-
-        dashesAvailable = 0;
+            dashesAvailable = 0;
         for (int i = 0; i < dashTimers.Length; i++)
         {
             dashTimers[i] -= Time.deltaTime;
@@ -606,6 +580,63 @@ public class Player : MonoBehaviour
         //create public array with references to ui images that were all ready created, 
         // turn on how many dashes avaible and turn off those that aren't
 
+     }
+        //everything else going in a seperate method
+
+        //Game pad Dash/////////////////////////////////////////////////////////////////////////
+    void DashNow()
+    {
+     Debug.Log("trying to dash");
+            if (isAiming() == true)
+            {
+
+                if (DashAvailable())
+                {
+                    source.PlayOneShot(Dash, 0.8f);
+                    screenShake shaker = GameObject.Find("Main Camera").GetComponent<screenShake>();
+                    shaker.Screenshake(10f, 10f);
+
+                    int dashTimerIndex = 9999;
+                    for (int i = 0; i < dashTimers.Length; i++)
+                    {
+                        if (dashTimers[i] <= 0)
+                        {
+                            dashTimerIndex = i;
+                            break;
+                        }
+                    }
+
+
+                    //f hit_Pause.Freeze(); 
+
+
+                   // if (hitPauseTimer <= 0)
+                   // {
+                        dashTimers[dashTimerIndex] = dashCoolDownDuration;
+
+
+                        //Vector2 dirToMouse = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+                        Vector2 dashDir = new Vector2(-1 * (Input.GetAxis(rightHorizontal)), Input.GetAxis(rightVertical)).normalized;
+                        dashDir *= dashSpeed;
+                        velocity.x += Input.GetAxis(rightHorizontal);
+                        velocity.y += Input.GetAxis(rightVertical);
+                        dashDuration = 0.25f;
+                        //Michael says
+                        //We make it so that dash direction doesnt get a value until a timer is done
+                        //This means we have to make a timer float that counts down.
+                        //This should fix the hit pause problem
+
+                        dashStart = transform.position;
+                        destination = transform.position + (Vector3)dashDir;
+                  // }
+                    //Set the velocities to just equals
+                    // make everymovement a coditional, if you dash you need a global timer to delay movement until the timer runs out
+                    //
+                }
+            }
+            hitPauseNow = false;
+            hitPauseDone = false;
+            hitPauseTimer = hitPauseOriginal;
 
     }
 
