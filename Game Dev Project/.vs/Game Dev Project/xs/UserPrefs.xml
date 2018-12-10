@@ -1,6 +1,6 @@
 ﻿<Properties StartupConfiguration="{1FBAE8F6-2207-B730-361E-C739D5F64B72}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/RoundEnd.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Player.cs">
     <Files>
       <File FileName="Assets/Scripts/Controller2D.cs" Line="65" Column="47" />
       <File FileName="Assets/Scripts/Teleporter.cs" Line="41" Column="10" />
