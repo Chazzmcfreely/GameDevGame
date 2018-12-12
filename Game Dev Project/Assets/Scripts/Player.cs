@@ -54,6 +54,8 @@ public class Player : MonoBehaviour
 
     public ParticleSystem walkingParticles;
     public ParticleSystem teleporterBurst;
+    
+    public ParticleSystem dashParticles;
 
     public Vector2 wallJumpClimb;
     public Vector2 wallJumpHop;
@@ -168,6 +170,8 @@ public class Player : MonoBehaviour
             rightVertical = "RightVertical";
             dash = "Dash";
             teleport = "Teleport";
+            dashParticles = dashRed;
+
 
 
         }else if(playerNum == PlayerNum.Player2){
@@ -181,6 +185,8 @@ public class Player : MonoBehaviour
             rightVertical = "P2RightVertical";
             dash = "P2Dash";
             teleport = "P2Teleport";
+            dashParticles = dashBlue;
+
 
 
         }
@@ -211,14 +217,19 @@ public class Player : MonoBehaviour
             }
         }
 
+        // This huge chunk of code controls the emission of the landing particle system,
+        // basically it only emits once the player lands after being airborne
+        // USES THE LANDING PARTICLE SYSTEM
         Debug.Log("right before first if: play once =" + playOnce);  
 
+        //cont'd
         if (controller.collisions.below && playOnce)
         {
             landing.Emit(3);
             playOnce = false;
         }
 
+        //cont'd
         Debug.Log("right after first if: play once =" + playOnce);
 
         if (controller.collisions.below != true)
@@ -227,7 +238,7 @@ public class Player : MonoBehaviour
         }
         Debug.Log("right after second if: play once =" + playOnce);
 
-
+        //cont'd
         Debug.Log(playOnce);
 
         roundOver = RoundEnd.roundOver;
@@ -261,7 +272,9 @@ public class Player : MonoBehaviour
 
         //increase drag force
 
-        
+        // Code used to emit the moving particle system based on input on the
+        // horizontal axis. Probably not going to be used since it doesn't work intended
+        // USES THE MOVING PARTICLE SYSTEM
         if (Input.GetAxisRaw(horizontalMove) != 0)
         {
             if (controller.collisions.below)
@@ -308,10 +321,6 @@ public class Player : MonoBehaviour
         }
 
    
-
-
-
-
         if((controller.collisions.left || controller.collisions.right) && !controller.collisions.below)
         {
 
@@ -353,7 +362,11 @@ public class Player : MonoBehaviour
             anim.SetBool("WallSliding", wallSliding);   
         }
 
-
+        // Emits puffs of smoke based on the opponents score, the higher the number the more
+        // puffs of smoke come out of the player
+        
+        
+        
         ////// <summary>
         /// TELEPORTERS
         /// </summary>
@@ -404,6 +417,7 @@ public class Player : MonoBehaviour
                 teleporter.transform.eulerAngles = new Vector3(0, 0, angle);
 
                 teleporter.GetComponent<Rigidbody2D>().velocity = dashDir * TeleporterSpeed; ;
+                
                 teleporterBurst.Emit(100);
 
                 //isTeleporter = true;
@@ -415,6 +429,8 @@ public class Player : MonoBehaviour
                 {
                     source.PlayOneShot(Teleport, 0.5f);
 
+                    // Emits an after-image from the player's previous location, creating an 'omae wa mou' vibe
+                    // USES THE APPROPRIATE DASH FOR THE PLAYER
                     dashRed.Emit(fugma);
                     transform.position = teleporter.transform.position;
                     //teleporterBurst.Emit(100);
@@ -489,6 +505,9 @@ public class Player : MonoBehaviour
             }
 
         }
+        
+        smoke.Emit(ScoreManager.BlueScore);
+        
         ////////////////////////////////////////////// Jumping //////////////////////////
 
 
@@ -512,7 +531,9 @@ public class Player : MonoBehaviour
             Vector3 lineToDestination = destination - transform.position;
             lineToDestination.Normalize();
             velocity = lineToDestination * dashSpeed;
-            dashRed.Emit(sugma);
+            
+            //WHAT CONTROLS THE DOPE ASS EFFECT ON THE DASH, IMPORTANT THAT YOU USE SUGMA FOR THIS
+            dashParticles.Emit(sugma);
 
             // raycast check for damage (im gonna say the N-word)
             RaycastHit2D hit = Physics2D.Raycast(transform.position, lineToDestination.normalized, 2, enemyMask);
