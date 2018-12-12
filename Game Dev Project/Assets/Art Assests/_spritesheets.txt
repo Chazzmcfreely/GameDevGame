@@ -1,0 +1,1 @@
+city_bg-rain-sprites.png,640,360,62

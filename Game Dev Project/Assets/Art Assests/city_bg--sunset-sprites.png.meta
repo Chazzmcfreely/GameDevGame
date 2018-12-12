@@ -1,7 +1,62 @@
 fileFormatVersion: 2
 guid: 5a4e3145e163441a4b5251f2ec4a2e77
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: city_bg--sunset-sprites_0
+    21300002: city_bg--sunset-sprites_1
+    21300004: city_bg--sunset-sprites_2
+    21300006: city_bg--sunset-sprites_3
+    21300008: city_bg--sunset-sprites_4
+    21300010: city_bg--sunset-sprites_5
+    21300012: city_bg--sunset-sprites_6
+    21300014: city_bg--sunset-sprites_7
+    21300016: city_bg--sunset-sprites_8
+    21300018: city_bg--sunset-sprites_9
+    21300020: city_bg--sunset-sprites_10
+    21300022: city_bg--sunset-sprites_11
+    21300024: city_bg--sunset-sprites_12
+    21300026: city_bg--sunset-sprites_13
+    21300028: city_bg--sunset-sprites_14
+    21300030: city_bg--sunset-sprites_15
+    21300032: city_bg--sunset-sprites_16
+    21300034: city_bg--sunset-sprites_17
+    21300036: city_bg--sunset-sprites_18
+    21300038: city_bg--sunset-sprites_19
+    21300040: city_bg--sunset-sprites_20
+    21300042: city_bg--sunset-sprites_21
+    21300044: city_bg--sunset-sprites_22
+    21300046: city_bg--sunset-sprites_23
+    21300048: city_bg--sunset-sprites_24
+    21300050: city_bg--sunset-sprites_25
+    21300052: city_bg--sunset-sprites_26
+    21300054: city_bg--sunset-sprites_27
+    21300056: city_bg--sunset-sprites_28
+    21300058: city_bg--sunset-sprites_29
+    21300060: city_bg--sunset-sprites_30
+    21300062: city_bg--sunset-sprites_31
+    21300064: city_bg--sunset-sprites_32
+    21300066: city_bg--sunset-sprites_33
+    21300068: city_bg--sunset-sprites_34
+    21300070: city_bg--sunset-sprites_35
+    21300072: city_bg--sunset-sprites_36
+    21300074: city_bg--sunset-sprites_37
+    21300076: city_bg--sunset-sprites_38
+    21300078: city_bg--sunset-sprites_39
+    21300080: city_bg--sunset-sprites_40
+    21300082: city_bg--sunset-sprites_41
+    21300084: city_bg--sunset-sprites_42
+    21300086: city_bg--sunset-sprites_43
+    21300088: city_bg--sunset-sprites_44
+    21300090: city_bg--sunset-sprites_45
+    21300092: city_bg--sunset-sprites_46
+    21300094: city_bg--sunset-sprites_47
+    21300096: city_bg--sunset-sprites_48
+    21300098: city_bg--sunset-sprites_49
+    21300100: city_bg--sunset-sprites_50
+    21300102: city_bg--sunset-sprites_51
+    21300104: city_bg--sunset-sprites_52
+    21300106: city_bg--sunset-sprites_53
+    21300108: city_bg--sunset-sprites_54
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -31,7 +86,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -40,12 +95,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 300
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -60,7 +115,29 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 2
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -71,7 +148,1107 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2160
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46453403dc9f21840b51e680a52211ee
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_1
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 2160
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ad4292043e024f4395c54047a370a72
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_2
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 2160
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d15f995c276a454d96f52bfcb0d4741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_3
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 2160
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acca123a5498fdb4a929d14718ecee7a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_4
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 2160
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02f4e419c2a123e489deff176f33f429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_5
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 2160
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95fe690714d3d3b4c918f959bf881b68
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_6
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 2160
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 686e44bed6200924ba27ccae2fd0d81f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_7
+      rect:
+        serializedVersion: 2
+        x: 4480
+        y: 2160
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b2a10b09da403146b12cdaaa4f3a664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1800
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1129900a9ce9b894c80628676f577ac9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_9
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 1800
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd85a9d8ea209254498e98f580f3a256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_10
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1800
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c98dd6510be3c38488f9dd0e1e195a98
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_11
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 1800
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2603bf2831c95a34b930db547dc785e3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_12
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 1800
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29a5aeef5e7aef8438197c44f070c9f7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_13
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 1800
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 953c26638ea8c9943a433cce2afe3323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_14
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 1800
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69cbfbab487d9e5439d8fadb461a0d67
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_15
+      rect:
+        serializedVersion: 2
+        x: 4480
+        y: 1800
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6da6aab82a1e234c9ea7bca5f05c428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1440
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9544f90da35275a4f8c8c0fde5cd6a59
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_17
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 1440
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdb66a791673129428bf675c0d833e5e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_18
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1440
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c63146efc90d684698f78d1f1dc9e5b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_19
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 1440
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69f00da0338f2a349ac55c8a91b209c1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_20
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 1440
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e35b52fbefaa3cb4badb8d5e7adb281a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_21
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 1440
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf35336e8ee2163459a172c46ff8fbff
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_22
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 1440
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 539da7a4e1076a3448a6f247cdd48812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_23
+      rect:
+        serializedVersion: 2
+        x: 4480
+        y: 1440
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21b806c02a8058d408f0c342b31564f0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1080
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c14b1111748fbbe49b85b5c3898a0a65
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_25
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 1080
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f339fba60d88314cba66408192cd091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_26
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1080
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1c9317581925054aada234a7438ee6b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_27
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 1080
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d81ca280d447784c8a8dfbebcbd5383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_28
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 1080
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11c9a8dac9e952842a7dedf62f38f6b6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_29
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 1080
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 583433a1f2fd9bc4f8cd1fc76f20da01
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_30
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 1080
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1266515caa1c85441aef182f2c772dec
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_31
+      rect:
+        serializedVersion: 2
+        x: 4480
+        y: 1080
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 312c75033d3808f469f4695326c1f384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 720
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a52063afe974c98488ef75a954dac53e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_33
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 720
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aff32e45d25eac34781aee76eb19968f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_34
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 720
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10cc2327a0325ee4e9b7577a0e8d8a7c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_35
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 720
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a8c0fc2f94e18c428d42769a1f34d0d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_36
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 720
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bc4bd1f82fb15a4ba991542b38b8d05
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_37
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 720
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53e7d7007f7770345a78bc9131f5785b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_38
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 720
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 077e6111c22180d4e894533e32d00b4b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_39
+      rect:
+        serializedVersion: 2
+        x: 4480
+        y: 720
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00a1734f4226d4a4abcbdb3db7e304b5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 360
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e8fd4f3eab116441b34d4fb0d8645f1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_41
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 360
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b0b15fc7f626704a8121f09cdb89541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_42
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 360
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c65825cbdb0d0545ad0dd37f7b491a9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_43
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 360
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e16b0f4bc4fe8634690f06e5a017e91c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_44
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 360
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2868a832213ada149b6bb4155cf00dd6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_45
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 360
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdd530d060138c74aa733a0826e7273c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_46
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 360
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b55c790d1b0d3542a3b874904cc6f8e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_47
+      rect:
+        serializedVersion: 2
+        x: 4480
+        y: 360
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91b6cdf9765888b40b74f6d31add3118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccb73f02c2ee25c4683e41cf94b5f7c4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_49
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 740bc9bcc04b79341986e998c341dadc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_50
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a51eeeaf5b0fa1d47be51da6e8803209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_51
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a28bdee966118e4283694473015c7a6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_52
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43735b569e27bfe47a0a6b490b03b649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_53
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 043de8855afb2c74c82cfd2adb17debd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_bg--sunset-sprites_54
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac3801557090a9c4c9a076d51081c348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
