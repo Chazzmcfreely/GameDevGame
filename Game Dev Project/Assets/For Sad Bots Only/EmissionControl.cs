@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Put this on an empty gameObject designated particle GM,
-// used to control the emission of the particles in the game
+//old connor is dead, today marks the death of the big gay
 public class EmissionControl : MonoBehaviour
 {
     // So just copy and paste these Public particle systems into the main Player

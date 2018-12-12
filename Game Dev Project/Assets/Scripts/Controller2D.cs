@@ -7,6 +7,7 @@ public class Controller2D : MonoBehaviour
 {
     public LayerMask collisionMask;
 
+    public Player player;
     const float skinWidth = .015f;
     public int horizontalRayCount = 4;
     public int verticalRayCount = 4;
@@ -140,6 +141,8 @@ public class Controller2D : MonoBehaviour
                 }
 
                 collisions.below = directionY == -1;
+                
+                
                 collisions.above = directionY == 1;
             }
         }
@@ -172,7 +175,7 @@ public class Controller2D : MonoBehaviour
         {
             velocity.y = climbVelocityY;
             velocity.x = Mathf.Cos(slopeAngle * Mathf.Deg2Rad) * moveDistance * Mathf.Sign(velocity.x);
-            collisions.below = true;
+            //collisions.below = true;
             collisions.climbingSlope = true;
             collisions.slopeAngle = slopeAngle;
         }
@@ -201,7 +204,7 @@ public class Controller2D : MonoBehaviour
 
                         collisions.slopeAngle = slopeAngle;
                         collisions.descendingSlope = true;
-                        collisions.below = true;
+                        //collisions.below = true;
                     }
                 }
             }
@@ -248,6 +251,7 @@ public class Controller2D : MonoBehaviour
     {
         public bool above, below;
         public bool left, right;
+        
 
         public bool climbingSlope;
         public bool descendingSlope;
@@ -262,6 +266,10 @@ public class Controller2D : MonoBehaviour
             left = right = false;
             climbingSlope = false;
             descendingSlope = false;
+
+            
+            
+            
 
             slopeAngleOld = slopeAngle;
             slopeAngle = 0;

@@ -7,6 +7,24 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour
 {
+    // For when the player is damaged, emits a puff of smoke
+    public ParticleSystem smoke;
+	
+    // On hit, emits a number of springs, bolts, etc.
+    public ParticleSystem bolt;
+	
+    // On hit, emits a burst of electrical sparks
+    public ParticleSystem spark;
+	
+    // When moving on the ground, emits a puff of smoke
+    public ParticleSystem moving;
+    
+    public ParticleSystem landing;
+	
+    // The dash effect for the players, similar to Celeste
+    public ParticleSystem dashRed;
+    public ParticleSystem dashBlue;
+    
     public float maxJumpHeight = 4;
     public float minJumpHeight = 1;
     public float timeToJumpApex = .4f;
@@ -14,6 +32,9 @@ public class Player : MonoBehaviour
     float accelerationTimeGrounded = .1f;
     public float moveSpeed = 8;
     public GameObject TeleporterPrefab;
+
+    public int fugma = 90;
+    public int sugma = 1;
 
     public Transform arrowPivot;
 
@@ -80,6 +101,7 @@ public class Player : MonoBehaviour
     public bool hitPauseDone = false;
 
     public float lives = 3;
+    private bool playOnce;
 
    // bool isTeleporter = false;
     GameObject teleporter;
@@ -121,6 +143,8 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        playOnce = false;
+        
         source = GetComponent<AudioSource>();
         controller = GetComponent<Controller2D>();
         players[0] = GameObject.FindGameObjectWithTag("Player1");
@@ -173,6 +197,7 @@ public class Player : MonoBehaviour
 
     void Update() 
     {
+        Debug.Log("begining of update: play once =" + playOnce);
         if(playerNum == PlayerNum.Player1){
             score = ScoreManager.RedScore;
             if(RoundEnd.Player2Win){
@@ -185,6 +210,25 @@ public class Player : MonoBehaviour
                 return;
             }
         }
+
+        Debug.Log("right before first if: play once =" + playOnce);  
+
+        if (controller.collisions.below && playOnce)
+        {
+            landing.Emit(3);
+            playOnce = false;
+        }
+
+        Debug.Log("right after first if: play once =" + playOnce);
+
+        if (controller.collisions.below != true)
+        {
+            playOnce = true;
+        }
+        Debug.Log("right after second if: play once =" + playOnce);
+
+
+        Debug.Log(playOnce);
 
         roundOver = RoundEnd.roundOver;
         arrowPivot.position = transform.position;
@@ -217,6 +261,14 @@ public class Player : MonoBehaviour
 
         //increase drag force
 
+        
+        if (Input.GetAxisRaw(horizontalMove) != 0)
+        {
+            if (controller.collisions.below)
+            {
+                moving.Emit(1);
+            }
+        }
 
         bool wallSliding = false;
        
@@ -363,6 +415,7 @@ public class Player : MonoBehaviour
                 {
                     source.PlayOneShot(Teleport, 0.5f);
 
+                    dashRed.Emit(fugma);
                     transform.position = teleporter.transform.position;
                     //teleporterBurst.Emit(100);
                     // use it by teleporting
@@ -459,8 +512,9 @@ public class Player : MonoBehaviour
             Vector3 lineToDestination = destination - transform.position;
             lineToDestination.Normalize();
             velocity = lineToDestination * dashSpeed;
+            dashRed.Emit(sugma);
 
-            // raycast check for damage
+            // raycast check for damage (im gonna say the N-word)
             RaycastHit2D hit = Physics2D.Raycast(transform.position, lineToDestination.normalized, 2, enemyMask);
             Debug.DrawRay(transform.position, lineToDestination.normalized, Color.red);
           
@@ -470,6 +524,16 @@ public class Player : MonoBehaviour
                 if (hit.collider.gameObject.tag == enemy)
                 {
                     isDashing = true;
+
+                    var emitParams = new ParticleSystem.EmitParams();
+                    
+                    emitParams.position = hit.collider.gameObject.transform.position;
+
+                    bolt.Emit(Random.Range(8,12));
+                    
+                    smoke.Emit(Random.Range(8,9));
+                    
+                    spark.Emit(Random.Range(11,13));
 
                     source.PlayOneShot(Death, 1f);
 
@@ -496,6 +560,9 @@ public class Player : MonoBehaviour
                 DashNow();
             }
         }
+        
+        Debug.Log("end of update: play once =" + playOnce);
+
 
     }
     //update ends here
