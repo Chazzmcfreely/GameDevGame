@@ -9,6 +9,7 @@ TagManager:
   - Teleporter
   - Player1
   - Player2
+  - GameMusic
   layers:
   - Default
   - TransparentFX

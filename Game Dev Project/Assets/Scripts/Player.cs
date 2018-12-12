@@ -126,6 +126,8 @@ public class Player : MonoBehaviour
     string rightVertical;
     string dash;
     string teleport;
+    
+    int damage;
     int score;
 
     float[] dashTimers = new float[3] {
@@ -174,6 +176,7 @@ public class Player : MonoBehaviour
             dash = "Dash";
             teleport = "Teleport";
             dashParticles = dashRed;
+            damage = ScoreManager.RedScore;
 
 
 
@@ -189,6 +192,7 @@ public class Player : MonoBehaviour
             dash = "P2Dash";
             teleport = "P2Teleport";
             dashParticles = dashBlue;
+            damage = ScoreManager.BlueScore;
 
 
 
@@ -509,7 +513,8 @@ public class Player : MonoBehaviour
 
         }
         
-        smoke.Emit(ScoreManager.BlueScore);
+        //emitting smoke for damage
+        smoke.Emit(damage);
         
         ////////////////////////////////////////////// Jumping //////////////////////////
 

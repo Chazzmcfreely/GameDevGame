@@ -1176,8 +1176,8 @@ GameObject:
   - component: {fileID: 1234840772}
   - component: {fileID: 1234840774}
   m_Layer: 0
-  m_Name: Menu AudioMan
-  m_TagString: Untagged
+  m_Name: MenuAudioMan
+  m_TagString: GameMusic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1191,11 +1191,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: bc2f2f9c265ec4cd6b85e34cf081cbd5, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1301,11 +1301,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8701c3d98c7d34c9eb5cf1bb7de2b195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DMX_1: {fileID: 0}
-  DMX_2: {fileID: 0}
-  DMX_3: {fileID: 0}
-  DMX_4: {fileID: 0}
-  DMX_5: {fileID: 0}
   SoundTrack: {fileID: 8300000, guid: a946b269dce9e46fb901083cc240dd9d, type: 3}
   source: {fileID: 0}
 --- !u!1 &1352856700
