@@ -20,6 +20,9 @@ public class Player : MonoBehaviour
     public ParticleSystem moving;
     
     public ParticleSystem landing;
+    
+    // Same thing as dash but for teleports
+    public ParticleSystem teleportFade;
 	
     // The dash effect for the players, similar to Celeste
     public ParticleSystem dashRed;
@@ -431,7 +434,7 @@ public class Player : MonoBehaviour
 
                     // Emits an after-image from the player's previous location, creating an 'omae wa mou' vibe
                     // USES THE APPROPRIATE DASH FOR THE PLAYER
-                    dashRed.Emit(fugma);
+                    teleportFade.Emit(fugma);
                     transform.position = teleporter.transform.position;
                     //teleporterBurst.Emit(100);
                     // use it by teleporting
