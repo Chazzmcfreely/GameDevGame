@@ -51,7 +51,9 @@ public class Player : MonoBehaviour
     public Image[] scoreNums = new Image[6];
 
     public Vector2 dashDir;
-
+    public bool isDashing = false;
+    public float hitTimer = 0.1f;
+    float maxHitTimer = 0.1f;
 
     float gravity;
     float maxJumpVelocity;
@@ -467,6 +469,8 @@ public class Player : MonoBehaviour
                 Debug.Log("hit: " + hit.collider.gameObject.name + ", tag: " + hit.collider.gameObject.tag + ", this player's enemy is: " + enemy);
                 if (hit.collider.gameObject.tag == enemy)
                 {
+                    isDashing = true;
+
                     source.PlayOneShot(Death, 1f);
 
                     RoundEnd.EndRound(color);

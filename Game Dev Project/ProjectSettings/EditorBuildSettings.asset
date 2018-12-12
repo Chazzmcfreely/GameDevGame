@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/MainMenu.unity
     guid: 2e5a79f88f2134873ba6e0570e0dc149
   - enabled: 1
@@ -17,3 +17,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Blue Win Screen.unity
     guid: 13621cf7d273642d1a3ef7eac7a06c3d
+  m_configObjects: {}
