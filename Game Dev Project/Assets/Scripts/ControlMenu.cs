@@ -18,7 +18,7 @@ public class ControlMenu : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetButtonDown ("Teleport")) 
+        if (Input.GetButtonDown ("Teleport") || Input.GetButtonDown("P2Teleport"))
 		{
 			if (isEnabled == false) {
 				controls.SetActive (true);

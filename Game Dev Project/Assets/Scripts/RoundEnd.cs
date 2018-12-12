@@ -30,7 +30,7 @@ public class RoundEnd : MonoBehaviour
 
     public static bool roundOver = false;
 
-    private float reloadTimer = 1.1f;
+    private float reloadTimer = 1.2f;
 
     private static bool scored = false;
 
@@ -83,7 +83,11 @@ public class RoundEnd : MonoBehaviour
                 Player2Win = true;
                 ScoreManager.BlueScore++;
                 if(ScoreManager.BlueScore >= 5){
+                    ScoreManager.BlueScore = 0;
+                    ScoreManager.RedScore = 0;
+
                     SceneManager.LoadScene(3);
+
                 }
                 Debug.Log(ScoreManager.BlueScore);
             }
@@ -94,7 +98,10 @@ public class RoundEnd : MonoBehaviour
                 ScoreManager.RedScore++;
                 if (ScoreManager.RedScore >= 5)
                 {
+                    ScoreManager.BlueScore = 0;
+                    ScoreManager.RedScore = 0;
                     SceneManager.LoadScene(2);
+
                 }
                 Debug.Log(ScoreManager.RedScore);
             }
@@ -102,6 +109,11 @@ public class RoundEnd : MonoBehaviour
         }
 
     }
+
+    void resetNumbers(){
+        
+    }
+
 
 }
 
