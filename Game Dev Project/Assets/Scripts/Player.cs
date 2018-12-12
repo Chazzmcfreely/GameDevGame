@@ -99,6 +99,7 @@ public class Player : MonoBehaviour
     public AudioClip Dash;
     public AudioClip Teleport;
     public AudioClip Death;
+    public AudioClip empty;
     public bool ifMovedOnce = false;
     public float hitPauseTimer = .05f;
     float hitPauseOriginal = 0f;
@@ -432,6 +433,12 @@ public class Player : MonoBehaviour
             }
             else
             {
+                if (teleporterAvailable() == false && teleporter == null)
+                {
+                    source.PlayOneShot(empty, 0.15f);
+
+                }
+                
                 if (teleporter != null)
                 {
                     source.PlayOneShot(Teleport, 0.5f);
@@ -448,9 +455,13 @@ public class Player : MonoBehaviour
                     teleporter = null;
 
                 }
+                
             }
 
+                
+
             }
+        
 
         //////////////////////////Teleporters /////////////////////////////
 
@@ -636,6 +647,10 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown(dash))
         {
             hitPauseNow = true;
+            if (dashesAvailable == 0)
+            {
+                source.PlayOneShot(empty, 0.15f);
+            }
         }
             dashesAvailable = 0;
         for (int i = 0; i < dashTimers.Length; i++)

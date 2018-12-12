@@ -2214,6 +2214,11 @@ Prefab:
       propertyPath: teleportFade
       value: 
       objectReference: {fileID: 184191422}
+    - target: {fileID: 114371344682410032, guid: 56eec0932fa97411f988bef98468ced5,
+        type: 2}
+      propertyPath: empty
+      value: 
+      objectReference: {fileID: 8300000, guid: 7d8444fe60b464606b8736b269315263, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56eec0932fa97411f988bef98468ced5, type: 2}
   m_IsPrefabAsset: 0
@@ -3255,6 +3260,11 @@ Prefab:
       propertyPath: teleportFade
       value: 
       objectReference: {fileID: 1212608951}
+    - target: {fileID: 114371344682410032, guid: 56eec0932fa97411f988bef98468ced5,
+        type: 2}
+      propertyPath: empty
+      value: 
+      objectReference: {fileID: 8300000, guid: 7d8444fe60b464606b8736b269315263, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56eec0932fa97411f988bef98468ced5, type: 2}
   m_IsPrefabAsset: 0
@@ -10820,7 +10830,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.516667
+  orthographic size: 4.96
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
