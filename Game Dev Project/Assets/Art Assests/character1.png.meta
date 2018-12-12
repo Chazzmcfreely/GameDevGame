@@ -2,18 +2,18 @@ fileFormatVersion: 2
 guid: 1fadd3f1088b94c6389d212f65b04c18
 TextureImporter:
   fileIDToRecycleName:
-    21300000: character1_0
-    21300002: character1_1
-    21300004: character1_2
-    21300006: character1_3
-    21300008: character1_4
-    21300010: character1_5
-    21300012: character1_6
-    21300014: character1_7
-    21300016: character1_8
-    21300018: character1_9
-    21300020: character1_10
-    21300022: character1_11
+    21300000: Red_Idle_1
+    21300002: Red_Idle_2
+    21300004: Red_Idle_3
+    21300006: Red_Idle_4
+    21300008: Red_Idle_5
+    21300010: Red_Idle_6
+    21300012: Blue_Idle_1
+    21300014: Blue_Idle_2
+    21300016: Blue_Idle_3
+    21300018: Blue_Idle_4
+    21300020: Blue_Idle_5
+    21300022: Blue_Idle_6
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -107,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: character1_0
+      name: Red_Idle_1
       rect:
         serializedVersion: 2
         x: 0
@@ -115,7 +115,7 @@ TextureImporter:
         width: 14
         height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -127,15 +127,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character1_1
+      name: Red_Idle_2
       rect:
         serializedVersion: 2
         x: 16
         y: 24
         width: 14
-        height: 17
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -147,7 +147,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character1_2
+      name: Red_Idle_3
       rect:
         serializedVersion: 2
         x: 32
@@ -155,7 +155,7 @@ TextureImporter:
         width: 14
         height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -167,7 +167,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character1_3
+      name: Red_Idle_4
       rect:
         serializedVersion: 2
         x: 48
@@ -175,7 +175,7 @@ TextureImporter:
         width: 14
         height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -187,7 +187,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character1_4
+      name: Red_Idle_5
       rect:
         serializedVersion: 2
         x: 64
@@ -195,7 +195,7 @@ TextureImporter:
         width: 14
         height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -207,15 +207,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character1_5
+      name: Red_Idle_6
       rect:
         serializedVersion: 2
         x: 80
         y: 24
         width: 14
-        height: 17
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -227,7 +227,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character1_6
+      name: Blue_Idle_1
       rect:
         serializedVersion: 2
         x: 0
@@ -235,7 +235,7 @@ TextureImporter:
         width: 14
         height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -247,15 +247,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character1_7
+      name: Blue_Idle_2
       rect:
         serializedVersion: 2
         x: 16
         y: 0
         width: 14
-        height: 17
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -267,7 +267,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character1_8
+      name: Blue_Idle_3
       rect:
         serializedVersion: 2
         x: 32
@@ -275,7 +275,7 @@ TextureImporter:
         width: 14
         height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -287,15 +287,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character1_9
+      name: Blue_Idle_4
       rect:
         serializedVersion: 2
         x: 48
         y: 0
         width: 14
-        height: 17
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -307,7 +307,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character1_10
+      name: Blue_Idle_5
       rect:
         serializedVersion: 2
         x: 64
@@ -315,7 +315,7 @@ TextureImporter:
         width: 14
         height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -327,15 +327,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character1_11
+      name: Blue_Idle_6
       rect:
         serializedVersion: 2
         x: 80
         y: 0
         width: 14
-        height: 17
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
