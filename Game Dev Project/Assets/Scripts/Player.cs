@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     public bool roundOver = false;
 
     public PlayerNum playerNum;
-
+    float lastAngle;
     public LayerMask enemyMask;
 
     public RoundEnd roundEnd;
@@ -50,8 +50,10 @@ public class Player : MonoBehaviour
     public Image TeleporterCoolDownTwo;
     public Image[] scoreNums = new Image[6];
 
- 
-
+    public Vector2 dashDir;
+    public bool isDashing = false;
+    public float hitTimer = 0.1f;
+    float maxHitTimer = 0.1f;
 
     float gravity;
     float maxJumpVelocity;
@@ -63,7 +65,7 @@ public class Player : MonoBehaviour
     float dashDuration = 0;
     Vector3 destination;
     Vector3 dashStart;
-
+    Vector2 lastDashDir;
     public AudioSource source;
     public AudioClip Jump;
     public AudioClip runOne; 
@@ -71,7 +73,7 @@ public class Player : MonoBehaviour
     public AudioClip Dash;
     public AudioClip Teleport;
     public AudioClip Death;
-
+    public bool ifMovedOnce = false;
     public float hitPauseTimer = .05f;
     float hitPauseOriginal = 0f;
     public bool hitPauseNow = false;
@@ -166,6 +168,7 @@ public class Player : MonoBehaviour
         }
 
         hitPauseOriginal = hitPauseTimer;
+        lastAngle = 90f;
     }
 
     void Update() 
@@ -185,7 +188,13 @@ public class Player : MonoBehaviour
 
         roundOver = RoundEnd.roundOver;
         arrowPivot.position = transform.position;
-        arrowPivot.gameObject.SetActive(false);
+        if (ifMovedOnce == true)
+        {
+            arrowPivot.gameObject.SetActive(true);
+        }
+        else{
+            arrowPivot.gameObject.SetActive(false);
+        }
         Vector2 input = new Vector2(Input.GetAxisRaw(horizontalMove), Input.GetAxisRaw(verticalMove));
         float targetVelocityX = input.x * currentSpeed;
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
@@ -213,10 +222,18 @@ public class Player : MonoBehaviour
        
         //////////////////////////////////////
         float angle = Mathf.Atan2(Input.GetAxis(rightHorizontal), Input.GetAxis(rightVertical)) * Mathf.Rad2Deg;
-        if(Input.GetAxis(rightHorizontal) != 0 || Input.GetAxis(rightVertical) != 0){
+        if (Input.GetAxis(rightHorizontal) != 0f || Input.GetAxis(rightVertical) != 0f){
             arrowPivot.gameObject.SetActive(true);
+            arrowPivot.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            lastAngle = angle;
+           
         }
-        arrowPivot.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        else
+        {
+            arrowPivot.rotation = Quaternion.Euler(new Vector3(0, 0, lastAngle));
+           
+        }
+        Debug.Log("last angle is:" + lastAngle);
 
 
 
@@ -426,7 +443,16 @@ public class Player : MonoBehaviour
     
         velocity.y += gravity * Time.deltaTime;
 
-        CheckDash();
+        dashDir = new Vector2(-1 * (Input.GetAxis(rightHorizontal)), Input.GetAxis(rightVertical)).normalized;
+        if (isAiming() == true)
+        {
+            lastDashDir = dashDir;
+        }
+
+        if (ifMovedOnce == true)
+        {
+            CheckDash();
+        }
 
         if (dashDuration > 0)
         {
@@ -443,6 +469,8 @@ public class Player : MonoBehaviour
                 Debug.Log("hit: " + hit.collider.gameObject.name + ", tag: " + hit.collider.gameObject.tag + ", this player's enemy is: " + enemy);
                 if (hit.collider.gameObject.tag == enemy)
                 {
+                    isDashing = true;
+
                     source.PlayOneShot(Death, 1f);
 
                     RoundEnd.EndRound(color);
@@ -497,7 +525,9 @@ public class Player : MonoBehaviour
     bool isAiming()
     {
         if (Input.GetAxis(rightHorizontal) != 0 || Input.GetAxis(rightVertical) != 0) {
+            ifMovedOnce = true;
             return true;
+           
         }
 
         return false;
@@ -587,8 +617,8 @@ public class Player : MonoBehaviour
     void DashNow()
     {
      Debug.Log("trying to dash");
-            if (isAiming() == true)
-            {
+           // if (isAiming() == true)
+          //  {
 
                 if (DashAvailable())
                 {
@@ -616,8 +646,9 @@ public class Player : MonoBehaviour
 
 
                         //Vector2 dirToMouse = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
-                        Vector2 dashDir = new Vector2(-1 * (Input.GetAxis(rightHorizontal)), Input.GetAxis(rightVertical)).normalized;
-                        dashDir *= dashSpeed;
+                     
+                        
+                        lastDashDir *= dashSpeed;
                         velocity.x += Input.GetAxis(rightHorizontal);
                         velocity.y += Input.GetAxis(rightVertical);
                         dashDuration = 0.25f;
@@ -627,13 +658,13 @@ public class Player : MonoBehaviour
                         //This should fix the hit pause problem
 
                         dashStart = transform.position;
-                        destination = transform.position + (Vector3)dashDir;
+                        destination = transform.position + (Vector3)lastDashDir;
                   // }
                     //Set the velocities to just equals
                     // make everymovement a coditional, if you dash you need a global timer to delay movement until the timer runs out
                     //
                 }
-            }
+            //}
             hitPauseNow = false;
             hitPauseDone = false;
             hitPauseTimer = hitPauseOriginal;
